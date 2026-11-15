@@ -4,13 +4,24 @@
   --font-display: "Fira Sans Black", "Fira Sans", sans-serif;
   --font-sans: "Overpass", sans-serif;
   --font-mono: "Overpass", sans-serif;
+  --color-blue-yonder: #2E96F5;
+  --color-neon-blue: #0960E1;
+  --color-electric-blue: #0042A6;
+  --color-deep-blue: #07173F;
+  --color-rocket-red: #E43700;
+  --color-martian-red: #8E1100;
+  --color-neon-yellow: #EAFE07;
+  --color-pure-white: #FFFFFF;
 }
 
 @layer base {
   html,
   body {
-    background-color: #030613;
-    color: #f1f5f9;
+    min-height: 100%;
+    background-color: #07173F;
+    background-image: linear-gradient(135deg, #0042A6 0%, #07173F 100%);
+    background-attachment: fixed;
+    color: #FFFFFF;
     font-family: var(--font-sans);
     overflow-x: hidden;
   }

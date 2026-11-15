@@ -118,12 +118,12 @@ export const GalleryScreen: React.FC<GalleryScreenProps> = ({
   return (
     <section className="flex-1 flex flex-col px-4 sm:px-8 lg:px-10 pt-3 pb-10 gap-6">
       {/* Header & Filter Bar */}
-      <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 border-b border-blue-400/20 pb-4">
+      <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 border-b border-[#2E96F5]/25 pb-4">
         <div>
-          <h1 className="font-display text-2xl sm:text-3xl font-bold text-white">
+          <h1 className="font-display text-2xl sm:text-3xl font-black text-[#FFFFFF]">
             SPHEREx & Deep Space Observation Gallery
           </h1>
-          <p className="mt-1 text-sm text-slate-300 max-w-2xl">
+          <p className="mt-1 text-sm text-[#FFFFFF]/80 max-w-2xl">
             Inspect verified NASA JPL spacecraft captures, infrared galactic mosaics, and search
             the live NASA Image Library directly.
           </p>
@@ -132,19 +132,19 @@ export const GalleryScreen: React.FC<GalleryScreenProps> = ({
         {/* Live NASA API Search Form */}
         <form onSubmit={handleLiveNasaSearch} className="flex items-center gap-2 shrink-0">
           <div className="relative">
-            <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#FFFFFF]/65" />
             <input
               type="text"
               value={liveQuery}
               onChange={(e) => setLiveQuery(e.target.value)}
               placeholder="Query live NASA archive (e.g. Nebula, Kuiper)..."
-              className="w-64 sm:w-72 rounded-lg bg-[#071129] border border-blue-400/35 pl-9 pr-3 py-2 text-xs sm:text-sm text-white placeholder:text-slate-400 focus:outline-none focus:border-sky-400"
+              className="w-64 sm:w-72 rounded-lg bg-[#07173F]/85 border border-[#2E96F5]/45 pl-9 pr-3 py-2 text-xs sm:text-sm text-[#FFFFFF] placeholder:text-[#FFFFFF]/60 focus:outline-none focus:border-[#2E96F5]"
             />
           </div>
           <button
             type="submit"
             disabled={isLoadingLive}
-            className="px-4 py-2 rounded-lg bg-blue-600/45 hover:bg-blue-600/65 border border-blue-300/60 text-xs sm:text-sm font-medium text-white whitespace-nowrap shrink-0 transition-colors cursor-pointer disabled:opacity-50"
+            className="px-4 py-2 rounded-lg bg-[#0960E1]/75 hover:bg-[#0960E1] border border-[#2E96F5] text-xs sm:text-sm font-medium text-[#FFFFFF] whitespace-nowrap shrink-0 transition-colors cursor-pointer disabled:opacity-50"
           >
             {isLoadingLive ? 'Searching...' : 'Query NASA'}
           </button>
@@ -156,7 +156,7 @@ export const GalleryScreen: React.FC<GalleryScreenProps> = ({
                 setLiveQuery('');
                 setLiveError(null);
               }}
-              className="inline-flex items-center gap-1 px-3 py-2 rounded-lg border border-slate-700 text-xs text-slate-300 hover:text-white whitespace-nowrap shrink-0 cursor-pointer"
+              className="inline-flex items-center gap-1 px-3 py-2 rounded-lg border border-[#2E96F5]/40 text-xs text-[#FFFFFF]/80 hover:text-[#FFFFFF] whitespace-nowrap shrink-0 cursor-pointer"
             >
               <RefreshCw className="w-3.5 h-3.5" />
               <span>Curated</span>
@@ -165,9 +165,9 @@ export const GalleryScreen: React.FC<GalleryScreenProps> = ({
         </form>
       </div>
 
-      {/* Category Filter Buttons (When Viewing Curated Set) */}
+      {/* Category Filter Buttons */}
       {liveItems === null && (
-        <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-xl bg-[#07122b] border border-blue-400/20 w-fit">
+        <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-xl bg-[#07173F]/85 border border-[#2E96F5]/35 w-fit">
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
@@ -175,8 +175,8 @@ export const GalleryScreen: React.FC<GalleryScreenProps> = ({
               onClick={() => onSelectCategory(cat)}
               className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-medium whitespace-nowrap shrink-0 transition-colors cursor-pointer ${
                 activeCategory === cat
-                  ? 'bg-blue-600/50 text-white border border-blue-300/60'
-                  : 'text-slate-300 hover:text-white'
+                  ? 'bg-[#0960E1]/75 text-[#FFFFFF] border border-[#2E96F5]'
+                  : 'text-[#FFFFFF]/75 hover:text-[#FFFFFF]'
               }`}
             >
               {cat}
@@ -187,13 +187,13 @@ export const GalleryScreen: React.FC<GalleryScreenProps> = ({
 
       {/* Error or Empty States */}
       {liveError && (
-        <div className="rounded-xl border border-rose-400/40 bg-rose-950/30 px-4 py-3 text-sm text-rose-200">
+        <div className="rounded-xl border border-[#E43700] bg-[#8E1100]/45 px-4 py-3 text-sm text-[#FFFFFF]">
           ✖ Live NASA API Error: {liveError}. Showing local mission controls remains available.
         </div>
       )}
 
       {activeList.length === 0 ? (
-        <div className="rounded-xl border border-blue-400/20 bg-[#071129]/60 p-10 text-center text-slate-300">
+        <div className="rounded-xl border border-[#2E96F5]/30 bg-[#07173F]/75 p-10 text-center text-[#FFFFFF]/80">
           No NASA observations matched &ldquo;{liveQuery}&rdquo;. Try searching &ldquo;SPHEREx&rdquo;,
           &ldquo;Andromeda&rdquo;, or &ldquo;Neptune&rdquo;.
         </div>
@@ -207,35 +207,35 @@ export const GalleryScreen: React.FC<GalleryScreenProps> = ({
                 setSelectedModalItem(item);
                 setIrFilterMode('natural');
               }}
-              className="group flex flex-col rounded-xl border border-blue-400/25 bg-[#071129]/85 hover:border-sky-400/70 overflow-hidden transition-colors cursor-pointer"
+              className="group flex flex-col rounded-xl border border-[#2E96F5]/35 bg-[#07173F]/85 hover:border-[#2E96F5] overflow-hidden transition-colors cursor-pointer"
             >
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#040918]">
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#07173F]">
                 <ResilientNasaImage
                   src={item.imageUrl}
                   alt={item.title}
                   fallbackTitle={item.title}
                   className="w-full h-full object-cover transition-transform duration-200 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#071129] via-transparent to-transparent opacity-85" />
-                <div className="absolute bottom-2.5 right-2.5 p-1.5 rounded-lg bg-[#040a1c]/80 border border-blue-400/35 text-sky-300 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#07173F] via-transparent to-transparent opacity-85" />
+                <div className="absolute bottom-2.5 right-2.5 p-1.5 rounded-lg bg-[#07173F]/90 border border-[#2E96F5]/55 text-[#2E96F5] opacity-0 group-hover:opacity-100 transition-opacity">
                   <Expand className="w-4 h-4" />
                 </div>
               </div>
 
               <div className="flex-1 flex flex-col justify-between p-4 gap-3">
                 <div>
-                  <div className="text-xs font-mono text-slate-400">
+                  <div className="text-xs font-mono text-[#FFFFFF]/65">
                     {item.nasaId} · {item.dateCreated}
                   </div>
-                  <h2 className="mt-1 text-base font-semibold text-white leading-snug line-clamp-2">
+                  <h2 className="mt-1 text-base font-semibold text-[#FFFFFF] leading-snug line-clamp-2">
                     {item.title}
                   </h2>
-                  <p className="mt-1.5 text-xs text-slate-300 leading-relaxed line-clamp-2">
+                  <p className="mt-1.5 text-xs text-[#FFFFFF]/80 leading-relaxed line-clamp-2">
                     {item.description}
                   </p>
                 </div>
 
-                <div className="pt-2 border-t border-blue-400/15 text-[11px] font-mono text-sky-300 truncate">
+                <div className="pt-2 border-t border-[#2E96F5]/20 text-[11px] font-mono text-[#2E96F5] truncate">
                   {item.wavelengthInfo}
                 </div>
               </div>
@@ -250,19 +250,19 @@ export const GalleryScreen: React.FC<GalleryScreenProps> = ({
           role="dialog"
           aria-modal="true"
           aria-label={selectedModalItem.title}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 sm:p-6"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-[#07173F]/85 p-4 sm:p-6"
           onClick={() => setSelectedModalItem(null)}
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-4xl rounded-2xl border border-blue-400/45 bg-[#061026] shadow-2xl overflow-hidden"
+            className="w-full max-w-4xl rounded-2xl border border-[#2E96F5]/65 bg-[#07173F] shadow-2xl overflow-hidden"
           >
-            <div className="flex items-center justify-between gap-4 px-5 py-3.5 border-b border-blue-400/20">
+            <div className="flex items-center justify-between gap-4 px-5 py-3.5 border-b border-[#2E96F5]/25">
               <div className="min-w-0">
-                <div className="text-xs font-mono text-sky-300">
+                <div className="text-xs font-mono text-[#2E96F5]">
                   NASA ID: {selectedModalItem.nasaId} · {selectedModalItem.credit}
                 </div>
-                <h3 className="text-lg font-bold text-white truncate">
+                <h3 className="text-lg font-bold text-[#FFFFFF] truncate">
                   {selectedModalItem.title}
                 </h3>
               </div>
@@ -275,8 +275,8 @@ export const GalleryScreen: React.FC<GalleryScreenProps> = ({
                   }
                   className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium whitespace-nowrap shrink-0 cursor-pointer ${
                     irFilterMode === 'infrared'
-                      ? 'bg-amber-500/25 border-amber-400/70 text-amber-200'
-                      : 'bg-blue-600/25 border-blue-400/40 text-slate-200 hover:text-white'
+                      ? 'bg-[#8E1100]/65 border-[#E43700] text-[#EAFE07]'
+                      : 'bg-[#0960E1]/35 border-[#2E96F5]/55 text-[#FFFFFF]/90 hover:text-[#FFFFFF]'
                   }`}
                 >
                   <Sparkles className="w-3.5 h-3.5" />
@@ -291,7 +291,7 @@ export const GalleryScreen: React.FC<GalleryScreenProps> = ({
                   type="button"
                   onClick={() => setSelectedModalItem(null)}
                   aria-label="Close observation viewer"
-                  className="p-1.5 rounded-lg border border-blue-400/25 text-slate-300 hover:text-white cursor-pointer"
+                  className="p-1.5 rounded-lg border border-[#2E96F5]/35 text-[#FFFFFF]/80 hover:text-[#FFFFFF] cursor-pointer"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -299,7 +299,7 @@ export const GalleryScreen: React.FC<GalleryScreenProps> = ({
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12">
-              <div className="lg:col-span-8 bg-[#030714] flex items-center justify-center max-h-[520px] overflow-hidden">
+              <div className="lg:col-span-8 bg-[#07173F] flex items-center justify-center max-h-[520px] overflow-hidden">
                 <ResilientNasaImage
                   src={selectedModalItem.imageUrl}
                   alt={selectedModalItem.title}
@@ -311,27 +311,27 @@ export const GalleryScreen: React.FC<GalleryScreenProps> = ({
                 />
               </div>
 
-              <div className="lg:col-span-4 p-5 flex flex-col justify-between gap-4 border-t lg:border-t-0 lg:border-l border-blue-400/20">
+              <div className="lg:col-span-4 p-5 flex flex-col justify-between gap-4 border-t lg:border-t-0 lg:border-l border-[#2E96F5]/25">
                 <div className="space-y-3">
                   <div>
-                    <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400">
+                    <div className="text-[11px] font-mono uppercase tracking-wider text-[#FFFFFF]/65">
                       Spectral Passband
                     </div>
-                    <div className="text-sm font-mono text-sky-300 mt-0.5">
+                    <div className="text-sm font-mono text-[#2E96F5] mt-0.5">
                       {selectedModalItem.wavelengthInfo}
                     </div>
                   </div>
 
                   <div>
-                    <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400">
+                    <div className="text-[11px] font-mono uppercase tracking-wider text-[#FFFFFF]/65">
                       Observation Date
                     </div>
-                    <div className="text-sm font-mono tabular-nums text-white mt-0.5">
+                    <div className="text-sm font-mono tabular-nums text-[#FFFFFF] mt-0.5">
                       {selectedModalItem.dateCreated}
                     </div>
                   </div>
 
-                  <p className="text-sm text-slate-300 leading-relaxed pt-2 border-t border-blue-400/15">
+                  <p className="text-sm text-[#FFFFFF]/80 leading-relaxed pt-2 border-t border-[#2E96F5]/20">
                     {selectedModalItem.description}
                   </p>
                 </div>
@@ -340,7 +340,7 @@ export const GalleryScreen: React.FC<GalleryScreenProps> = ({
                   href={selectedModalItem.imageUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-blue-600/40 hover:bg-blue-600/60 border border-blue-300/50 text-xs font-semibold text-white whitespace-nowrap transition-colors"
+                  className="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-[#0960E1]/75 hover:bg-[#0960E1] border border-[#2E96F5] text-xs font-semibold text-[#FFFFFF] whitespace-nowrap transition-colors"
                 >
                   Open Original NASA Asset
                 </a>

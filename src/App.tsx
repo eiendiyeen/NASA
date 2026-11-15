@@ -65,7 +65,7 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-screen w-full bg-[#030613] text-slate-100">
+    <div className="relative min-h-screen w-full bg-[linear-gradient(135deg,#0042A6_0%,#07173F_100%)] text-[#FFFFFF]">
       <StarfieldBackdrop />
 
       <AerospaceHudFrame>

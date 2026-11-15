@@ -32,7 +32,6 @@ export const DataScreen: React.FC<DataScreenProps> = ({
     const scaleFactor = (1 + effectiveRedshift) / (1 + activeTarget.defaultRedshift);
     return activeTarget.baseFluxPoints.map((pt, idx) => {
       const restEquivalentW = pt.wavelength / scaleFactor;
-      // Interpolate nearest point from baseFluxPoints
       let nearest = activeTarget.baseFluxPoints[0];
       let bestDist = Math.abs(nearest.wavelength - restEquivalentW);
       for (const candidate of activeTarget.baseFluxPoints) {
@@ -52,7 +51,7 @@ export const DataScreen: React.FC<DataScreenProps> = ({
   }, [activeTarget, effectiveRedshift]);
 
   const maxFlux = useMemo(
-    () => Math.max(100, ...shiftedSpectrum.map((p) => Math.max(p.flux, p.modelFlux)) ) * 1.12,
+    () => Math.max(100, ...shiftedSpectrum.map((p) => Math.max(p.flux, p.modelFlux))) * 1.12,
     [shiftedSpectrum]
   );
 
@@ -145,12 +144,12 @@ export const DataScreen: React.FC<DataScreenProps> = ({
   return (
     <section className="flex-1 flex flex-col px-4 sm:px-8 lg:px-10 pt-3 pb-10 gap-6">
       {/* Top Calibration & Export Bar */}
-      <div className="flex flex-wrap items-end justify-between gap-4 border-b border-blue-400/20 pb-4">
+      <div className="flex flex-wrap items-end justify-between gap-4 border-b border-[#2E96F5]/25 pb-4">
         <div>
-          <h1 className="font-display text-2xl sm:text-3xl font-bold text-white">
+          <h1 className="font-display text-2xl sm:text-3xl font-black text-[#FFFFFF]">
             SPHEREx 102-Channel Near-Infrared Data Lab
           </h1>
-          <p className="mt-1 text-sm text-slate-300 max-w-2xl">
+          <p className="mt-1 text-sm text-[#FFFFFF]/80 max-w-2xl">
             Inspect contiguous 0.75 – 5.00 μm Linear Variable Filter spectrophotometry, redshift
             line displacement, and molecular ice absorption profiles.
           </p>
@@ -159,16 +158,16 @@ export const DataScreen: React.FC<DataScreenProps> = ({
         <button
           type="button"
           onClick={handleDownloadCsv}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600/45 hover:bg-blue-600/65 border border-blue-300/60 text-xs sm:text-sm font-medium text-white whitespace-nowrap shrink-0 transition-colors cursor-pointer"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#0960E1]/75 hover:bg-[#0960E1] border border-[#2E96F5] text-xs sm:text-sm font-medium text-[#FFFFFF] whitespace-nowrap shrink-0 transition-colors cursor-pointer"
         >
-          <Download className="w-4 h-4 text-sky-200" />
+          <Download className="w-4 h-4 text-[#FFFFFF]" />
           <span>Download CSV</span>
         </button>
       </div>
 
       {/* Target Selector Buttons + Redshift Simulator */}
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-xl bg-[#07122b] border border-blue-400/25">
+        <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-xl bg-[#07173F]/85 border border-[#2E96F5]/35">
           {SPECTRAL_TARGETS.map((t) => (
             <button
               key={t.id}
@@ -179,8 +178,8 @@ export const DataScreen: React.FC<DataScreenProps> = ({
               }}
               className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap shrink-0 transition-colors cursor-pointer ${
                 t.id === activeTarget.id
-                  ? 'bg-blue-600/55 text-white border border-blue-300/60'
-                  : 'text-slate-300 hover:text-white'
+                  ? 'bg-[#0960E1]/75 text-[#FFFFFF] border border-[#2E96F5]'
+                  : 'text-[#FFFFFF]/75 hover:text-[#FFFFFF]'
               }`}
             >
               {t.name.split(' (')[0]}
@@ -188,10 +187,10 @@ export const DataScreen: React.FC<DataScreenProps> = ({
           ))}
         </div>
 
-        <div className="flex items-center gap-3 rounded-xl bg-[#071129] border border-blue-400/25 px-3.5 py-2 text-xs">
-          <label htmlFor="redshiftRange" className="font-mono text-slate-300 whitespace-nowrap">
+        <div className="flex items-center gap-3 rounded-xl bg-[#07173F]/85 border border-[#2E96F5]/35 px-3.5 py-2 text-xs">
+          <label htmlFor="redshiftRange" className="font-mono text-[#FFFFFF]/85 whitespace-nowrap">
             REDSHIFT (z):{' '}
-            <strong className="text-sky-300 tabular-nums">{effectiveRedshift.toFixed(2)}</strong>
+            <strong className="text-[#EAFE07] tabular-nums">{effectiveRedshift.toFixed(2)}</strong>
           </label>
           <input
             id="redshiftRange"
@@ -201,12 +200,12 @@ export const DataScreen: React.FC<DataScreenProps> = ({
             step={0.05}
             value={redshiftOffset}
             onChange={(e) => setRedshiftOffset(Number(e.target.value))}
-            className="w-32 accent-sky-400 cursor-pointer"
+            className="w-32 accent-[#2E96F5] cursor-pointer"
           />
           <button
             type="button"
             onClick={() => setRedshiftOffset(0)}
-            className="inline-flex items-center gap-1 text-slate-400 hover:text-white cursor-pointer"
+            className="inline-flex items-center gap-1 text-[#FFFFFF]/70 hover:text-[#FFFFFF] cursor-pointer"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             <span>Reset</span>
@@ -215,30 +214,30 @@ export const DataScreen: React.FC<DataScreenProps> = ({
       </div>
 
       {/* Main Dual-Curve Spectrophotometer Card */}
-      <div className="rounded-xl border border-blue-400/25 bg-[#060f25]/90 p-4 sm:p-6">
+      <div className="rounded-xl border border-[#2E96F5]/35 bg-[#07173F]/85 p-4 sm:p-6">
         <div className="flex flex-wrap items-center justify-between gap-4 mb-3">
           <div>
-            <h2 className="text-base sm:text-lg font-semibold text-white">{activeTarget.name}</h2>
-            <p className="text-xs text-slate-400">{activeTarget.subtitle}</p>
+            <h2 className="text-base sm:text-lg font-semibold text-[#FFFFFF]">{activeTarget.name}</h2>
+            <p className="text-xs text-[#FFFFFF]/70">{activeTarget.subtitle}</p>
           </div>
 
           {/* Live Probed Channel Readout */}
-          <div className="flex items-center gap-5 rounded-lg bg-[#040a1a] border border-blue-400/25 px-4 py-2 font-mono tabular-nums">
+          <div className="flex items-center gap-5 rounded-lg bg-[#07173F] border border-[#2E96F5]/40 px-4 py-2 font-mono tabular-nums">
             <div>
-              <div className="text-[10px] uppercase text-slate-400">Channel</div>
-              <div className="text-sm font-bold text-white">#{probedPoint.channel} / 102</div>
+              <div className="text-[10px] uppercase text-[#FFFFFF]/65">Channel</div>
+              <div className="text-sm font-bold text-[#FFFFFF]">#{probedPoint.channel} / 102</div>
             </div>
             <div>
-              <div className="text-[10px] uppercase text-slate-400">Wavelength</div>
-              <div className="text-sm font-bold text-sky-300">
-                {probedPoint.wavelength.toFixed(3)} <span className="text-[11px] text-slate-400">μm</span>
+              <div className="text-[10px] uppercase text-[#FFFFFF]/65">Wavelength</div>
+              <div className="text-sm font-bold text-[#2E96F5]">
+                {probedPoint.wavelength.toFixed(3)} <span className="text-[11px] text-[#FFFFFF]/65">μm</span>
               </div>
             </div>
             <div>
-              <div className="text-[10px] uppercase text-slate-400">Observed Flux</div>
-              <div className="text-sm font-bold text-emerald-300">
+              <div className="text-[10px] uppercase text-[#FFFFFF]/65">Observed Flux</div>
+              <div className="text-sm font-bold text-[#EAFE07]">
                 {probedPoint.flux.toFixed(2)}{' '}
-                <span className="text-[11px] text-slate-400">{activeTarget.fluxUnit}</span>
+                <span className="text-[11px] text-[#FFFFFF]/65">{activeTarget.fluxUnit}</span>
               </div>
             </div>
           </div>
@@ -253,8 +252,8 @@ export const DataScreen: React.FC<DataScreenProps> = ({
         >
           <defs>
             <linearGradient id="specAreaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.28" />
-              <stop offset="100%" stopColor="#1d4ed8" stopOpacity="0.02" />
+              <stop offset="0%" stopColor="#2E96F5" stopOpacity="0.32" />
+              <stop offset="100%" stopColor="#0042A6" stopOpacity="0.03" />
             </linearGradient>
           </defs>
 
@@ -269,15 +268,16 @@ export const DataScreen: React.FC<DataScreenProps> = ({
                   y1={y}
                   x2={chartRight}
                   y2={y}
-                  stroke="#1e3a8a"
-                  strokeOpacity="0.55"
+                  stroke="#0960E1"
+                  strokeOpacity="0.45"
                   strokeDasharray={frac === 0 ? undefined : '4 4'}
                 />
                 <text
                   x={chartLeft - 10}
                   y={y + 4}
                   textAnchor="end"
-                  fill="#94a3b8"
+                  fill="#FFFFFF"
+                  fillOpacity="0.7"
                   fontSize="11"
                   fontFamily="monospace"
                 >
@@ -297,13 +297,14 @@ export const DataScreen: React.FC<DataScreenProps> = ({
                   y1={chartTop}
                   x2={bx}
                   y2={chartBottom}
-                  stroke="#3b82f6"
-                  strokeOpacity="0.22"
+                  stroke="#2E96F5"
+                  strokeOpacity="0.28"
                 />
                 <text
                   x={bx + 6}
                   y={chartTop + 12}
-                  fill="#64748b"
+                  fill="#FFFFFF"
+                  fillOpacity="0.55"
                   fontSize="10"
                   fontFamily="monospace"
                 >
@@ -319,6 +320,8 @@ export const DataScreen: React.FC<DataScreenProps> = ({
             const shiftedW = feat.wavelengthUm * scaleFactor;
             if (shiftedW < 0.75 || shiftedW > 5.0) return null;
             const fx = toSvgX(shiftedW);
+            const lineHex = feat.type === 'absorption' ? '#EAFE07' : '#E43700';
+            const textHex = feat.type === 'absorption' ? '#EAFE07' : '#FFFFFF';
             return (
               <g key={feat.molecule + feat.wavelengthUm}>
                 <line
@@ -326,15 +329,15 @@ export const DataScreen: React.FC<DataScreenProps> = ({
                   y1={chartTop + 20}
                   x2={fx}
                   y2={chartBottom}
-                  stroke={feat.type === 'absorption' ? '#f59e0b' : '#a855f7'}
-                  strokeOpacity="0.65"
+                  stroke={lineHex}
+                  strokeOpacity="0.8"
                   strokeDasharray="3 3"
                 />
                 <text
                   x={fx}
                   y={chartTop + 16}
                   textAnchor="middle"
-                  fill={feat.type === 'absorption' ? '#fcd34d' : '#d8b4fe'}
+                  fill={textHex}
                   fontSize="10"
                   fontFamily="monospace"
                 >
@@ -349,11 +352,12 @@ export const DataScreen: React.FC<DataScreenProps> = ({
           <path
             d={modelPathD}
             fill="none"
-            stroke="#94a3b8"
+            stroke="#FFFFFF"
+            strokeOpacity="0.55"
             strokeWidth="1.6"
             strokeDasharray="6 4"
           />
-          <path d={obsPathD} fill="none" stroke="#38bdf8" strokeWidth="2.3" />
+          <path d={obsPathD} fill="none" stroke="#2E96F5" strokeWidth="2.3" />
 
           {/* Interactive Crosshair Probe */}
           <line
@@ -361,16 +365,16 @@ export const DataScreen: React.FC<DataScreenProps> = ({
             y1={chartTop}
             x2={toSvgX(probedPoint.wavelength)}
             y2={chartBottom}
-            stroke="#e2e8f0"
-            strokeOpacity="0.75"
+            stroke="#FFFFFF"
+            strokeOpacity="0.8"
             strokeWidth="1.2"
           />
           <circle
             cx={toSvgX(probedPoint.wavelength)}
             cy={toSvgY(probedPoint.flux)}
             r="5"
-            fill="#38bdf8"
-            stroke="#ffffff"
+            fill="#EAFE07"
+            stroke="#FFFFFF"
             strokeWidth="1.8"
           />
 
@@ -381,7 +385,8 @@ export const DataScreen: React.FC<DataScreenProps> = ({
               x={toSvgX(w)}
               y={chartBottom + 22}
               textAnchor="middle"
-              fill="#cbd5e1"
+              fill="#FFFFFF"
+              fillOpacity="0.85"
               fontSize="11"
               fontFamily="monospace"
             >
@@ -390,11 +395,11 @@ export const DataScreen: React.FC<DataScreenProps> = ({
           ))}
         </svg>
 
-        <div className="mt-2 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-400">
+        <div className="mt-2 flex flex-wrap items-center justify-between gap-3 text-xs text-[#FFFFFF]/70">
           <span>{activeTarget.notes}</span>
           <div className="flex items-center gap-4 font-mono shrink-0">
-            <span className="text-sky-300">— Empirical 102-Ch Trial</span>
-            <span className="text-slate-400">-- Theoretical Template</span>
+            <span className="text-[#2E96F5]">— Empirical 102-Ch Trial</span>
+            <span className="text-[#FFFFFF]/75">-- Theoretical Template</span>
           </div>
         </div>
       </div>
@@ -402,12 +407,12 @@ export const DataScreen: React.FC<DataScreenProps> = ({
       {/* Bottom Split: Resolving Power Radar + Sortable 6-Band Detector Table */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
         {/* Radar Calibration Chart */}
-        <div className="lg:col-span-4 rounded-xl border border-blue-400/25 bg-[#071129]/85 p-5 flex flex-col justify-between">
+        <div className="lg:col-span-4 rounded-xl border border-[#2E96F5]/35 bg-[#07173F]/85 p-5 flex flex-col justify-between">
           <div>
-            <h3 className="text-base font-semibold text-white">
+            <h3 className="text-base font-semibold text-[#FFFFFF]">
               Spectral Resolving Power Radar (R = λ/Δλ)
             </h3>
-            <p className="mt-1 text-xs text-slate-400">
+            <p className="mt-1 text-xs text-[#FFFFFF]/70">
               Bands 5–6 boost resolving power to R = 110–130 to resolve narrow interstellar CO₂ and
               CO ice bands.
             </p>
@@ -427,7 +432,8 @@ export const DataScreen: React.FC<DataScreenProps> = ({
                   key={ring}
                   points={pts}
                   fill="none"
-                  stroke="#334155"
+                  stroke="#0960E1"
+                  strokeOpacity="0.55"
                   strokeWidth="1"
                 />
               );
@@ -446,14 +452,16 @@ export const DataScreen: React.FC<DataScreenProps> = ({
                     y1={radarCenter}
                     x2={x2}
                     y2={y2}
-                    stroke="#334155"
+                    stroke="#0960E1"
+                    strokeOpacity="0.55"
                     strokeWidth="1"
                   />
                   <text
                     x={lx}
                     y={ly + 4}
                     textAnchor="middle"
-                    fill="#cbd5e1"
+                    fill="#FFFFFF"
+                    fillOpacity="0.9"
                     fontSize="10"
                     fontFamily="monospace"
                   >
@@ -465,36 +473,36 @@ export const DataScreen: React.FC<DataScreenProps> = ({
 
             <polygon
               points={radarPolygon}
-              fill="#06b6d4"
-              fillOpacity="0.24"
-              stroke="#38bdf8"
+              fill="#2E96F5"
+              fillOpacity="0.28"
+              stroke="#EAFE07"
               strokeWidth="2"
             />
           </svg>
 
-          <div className="text-xs font-mono tabular-nums text-slate-400 border-t border-blue-400/15 pt-3 flex items-center justify-between">
+          <div className="text-xs font-mono tabular-nums text-[#FFFFFF]/70 border-t border-[#2E96F5]/20 pt-3 flex items-center justify-between">
             <span>TOTAL CHANNELS: 102</span>
-            <span className="text-sky-300">ALL-SKY DEPTH: ~19.4 AB</span>
+            <span className="text-[#2E96F5]">ALL-SKY DEPTH: ~19.4 AB</span>
           </div>
         </div>
 
         {/* Sortable 6-Band LVF Specification Table */}
-        <div className="lg:col-span-8 rounded-xl border border-blue-400/25 bg-[#071129]/85 p-5 overflow-x-auto">
+        <div className="lg:col-span-8 rounded-xl border border-[#2E96F5]/35 bg-[#07173F]/85 p-5 overflow-x-auto">
           <div className="flex items-center justify-between gap-4 mb-3">
-            <h3 className="text-base font-semibold text-white">
+            <h3 className="text-base font-semibold text-[#FFFFFF]">
               Linear Variable Filter (LVF) Focal Plane Calibration Matrix
             </h3>
-            <span className="text-xs font-mono text-slate-400">Click column headers to sort</span>
+            <span className="text-xs font-mono text-[#FFFFFF]/65">Click column headers to sort</span>
           </div>
 
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b border-blue-400/25 text-xs font-mono uppercase text-slate-400">
+              <tr className="border-b border-[#2E96F5]/30 text-xs font-mono uppercase text-[#FFFFFF]/70">
                 <th className="py-2.5 pr-3">
                   <button
                     type="button"
                     onClick={() => toggleSort('bandNumber')}
-                    className="inline-flex items-center gap-1 hover:text-white cursor-pointer"
+                    className="inline-flex items-center gap-1 hover:text-[#FFFFFF] cursor-pointer"
                   >
                     <span>Band</span>
                     <ArrowUpDown className="w-3 h-3" />
@@ -505,7 +513,7 @@ export const DataScreen: React.FC<DataScreenProps> = ({
                   <button
                     type="button"
                     onClick={() => toggleSort('resolvingPower')}
-                    className="inline-flex items-center gap-1 hover:text-white cursor-pointer"
+                    className="inline-flex items-center gap-1 hover:text-[#FFFFFF] cursor-pointer"
                   >
                     <span>R (λ/Δλ)</span>
                     <ArrowUpDown className="w-3 h-3" />
@@ -515,7 +523,7 @@ export const DataScreen: React.FC<DataScreenProps> = ({
                   <button
                     type="button"
                     onClick={() => toggleSort('sensitivityAbMag')}
-                    className="inline-flex items-center gap-1 hover:text-white cursor-pointer"
+                    className="inline-flex items-center gap-1 hover:text-[#FFFFFF] cursor-pointer"
                   >
                     <span>5σ Depth (AB)</span>
                     <ArrowUpDown className="w-3 h-3" />
@@ -524,22 +532,22 @@ export const DataScreen: React.FC<DataScreenProps> = ({
                 <th className="py-2.5 pl-3">Primary Scientific Investigation</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-blue-400/10 text-sm">
+            <tbody className="divide-y divide-[#2E96F5]/15 text-sm">
               {sortedBands.map((band) => (
-                <tr key={band.bandNumber} className="hover:bg-blue-500/10 transition-colors">
-                  <td className="py-3 pr-3 font-medium text-white whitespace-nowrap">
+                <tr key={band.bandNumber} className="hover:bg-[#0042A6]/45 transition-colors">
+                  <td className="py-3 pr-3 font-medium text-[#FFFFFF] whitespace-nowrap">
                     {band.name}
                   </td>
-                  <td className="py-3 px-3 font-mono tabular-nums text-sky-300 whitespace-nowrap">
+                  <td className="py-3 px-3 font-mono tabular-nums text-[#2E96F5] whitespace-nowrap">
                     {band.minUm.toFixed(2)} – {band.maxUm.toFixed(2)} μm
                   </td>
-                  <td className="py-3 px-3 font-mono tabular-nums text-slate-200 whitespace-nowrap">
+                  <td className="py-3 px-3 font-mono tabular-nums text-[#FFFFFF]/90 whitespace-nowrap">
                     {band.resolvingPower}
                   </td>
-                  <td className="py-3 px-3 font-mono tabular-nums text-emerald-300 whitespace-nowrap">
+                  <td className="py-3 px-3 font-mono tabular-nums text-[#EAFE07] whitespace-nowrap">
                     {band.sensitivityAbMag.toFixed(1)} mag
                   </td>
-                  <td className="py-3 pl-3 text-xs text-slate-300">{band.primaryScience}</td>
+                  <td className="py-3 pl-3 text-xs text-[#FFFFFF]/80">{band.primaryScience}</td>
                 </tr>
               ))}
             </tbody>

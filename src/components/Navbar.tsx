@@ -79,7 +79,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <header className="relative z-40 px-4 sm:px-7 lg:px-10 pt-3.5 pb-3">
-      {/* Angled Aerospace Header Bezel Line Matching Screenshot */}
+      {/* Angled Aerospace Header Bezel Line */}
       <svg
         aria-hidden="true"
         viewBox="0 0 1440 84"
@@ -89,15 +89,15 @@ export const Navbar: React.FC<NavbarProps> = ({
         <path
           d="M 0 80 L 348 80 L 392 14 L 1440 14"
           fill="none"
-          stroke="#2563eb"
-          strokeOpacity="0.38"
+          stroke="#0960E1"
+          strokeOpacity="0.55"
           strokeWidth="1.3"
         />
         <path
           d="M 366 76 L 1440 76"
           fill="none"
-          stroke="#3b82f6"
-          strokeOpacity="0.22"
+          stroke="#2E96F5"
+          strokeOpacity="0.3"
           strokeWidth="1"
         />
         <line
@@ -105,8 +105,8 @@ export const Navbar: React.FC<NavbarProps> = ({
           y1="14"
           x2="585"
           y2="14"
-          stroke="#60a5fa"
-          strokeOpacity="0.65"
+          stroke="#2E96F5"
+          strokeOpacity="0.85"
           strokeWidth="2"
         />
       </svg>
@@ -116,11 +116,11 @@ export const Navbar: React.FC<NavbarProps> = ({
         <button
           type="button"
           onClick={() => onSelectTab(ScreenTab.Home)}
-          className="group flex items-center gap-3.5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 rounded-lg shrink-0 cursor-pointer"
+          className="group flex items-center gap-3.5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2E96F5] rounded-lg shrink-0 cursor-pointer"
         >
           <NasaMeatballLogo className="w-12 h-12 sm:w-14 sm:h-14 transition-transform duration-200 group-hover:scale-105" />
-          <span aria-hidden="true" className="h-9 w-px bg-blue-300/25" />
-          <span className="font-sans text-base sm:text-lg font-semibold leading-snug tracking-tight text-white">
+          <span aria-hidden="true" className="h-9 w-px bg-[#FFFFFF]/25" />
+          <span className="font-sans text-base sm:text-lg font-semibold leading-snug tracking-tight text-[#FFFFFF]">
             Planet X
             <br />
             and SPHEREx
@@ -139,10 +139,10 @@ export const Navbar: React.FC<NavbarProps> = ({
                 key={tab}
                 type="button"
                 onClick={() => onSelectTab(tab)}
-                className={`px-4 sm:px-5 py-1.5 text-sm sm:text-[15px] font-medium whitespace-nowrap shrink-0 rounded-xl transition-all duration-150 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 ${
+                className={`px-4 sm:px-5 py-1.5 text-sm sm:text-[15px] font-medium whitespace-nowrap shrink-0 rounded-xl transition-all duration-150 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2E96F5] ${
                   isActive
-                    ? 'bg-gradient-to-b from-blue-500/45 via-blue-600/35 to-blue-800/55 text-white border border-blue-300/75 shadow-[0_0_22px_rgba(59,130,246,0.65),inset_0_1px_8px_rgba(147,197,253,0.45)]'
-                    : 'text-slate-300 hover:text-white border border-transparent hover:border-blue-400/25 hover:bg-blue-950/35'
+                    ? 'bg-gradient-to-b from-[#2E96F5]/45 via-[#0960E1]/45 to-[#0042A6]/75 text-[#FFFFFF] border border-[#2E96F5] shadow-[0_0_22px_rgba(46,150,245,0.55),inset_0_1px_8px_rgba(255,255,255,0.25)]'
+                    : 'text-[#FFFFFF]/80 hover:text-[#FFFFFF] border border-transparent hover:border-[#2E96F5]/40 hover:bg-[#07173F]/50'
                 }`}
               >
                 {tab}
@@ -157,7 +157,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           className="order-2 lg:order-3 relative w-48 sm:w-60 lg:w-64 shrink-0 lg:pt-2"
         >
           <div className="relative flex items-center">
-            <Search className="pointer-events-none absolute left-3.5 w-4 h-4 text-slate-400" />
+            <Search className="pointer-events-none absolute left-3.5 w-4 h-4 text-[#FFFFFF]/65" />
             <input
               ref={inputRef}
               type="text"
@@ -169,7 +169,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               }}
               placeholder="Search.."
               aria-label="Search celestial objects, NASA gallery, and spectral datasets"
-              className="w-full rounded-full bg-[#060f24]/90 border border-blue-300/30 pl-9 pr-8 py-1.5 text-sm text-slate-100 placeholder:text-slate-400 focus:outline-none focus:border-blue-400/80 focus:shadow-[0_0_16px_rgba(59,130,246,0.35)] transition-all"
+              className="w-full rounded-full bg-[#07173F]/85 border border-[#2E96F5]/45 pl-9 pr-8 py-1.5 text-sm text-[#FFFFFF] placeholder:text-[#FFFFFF]/60 focus:outline-none focus:border-[#2E96F5] focus:shadow-[0_0_16px_rgba(46,150,245,0.4)] transition-all"
             />
             {query && (
               <button
@@ -179,7 +179,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   inputRef.current?.focus();
                 }}
                 aria-label="Clear search"
-                className="absolute right-2.5 text-slate-400 hover:text-white cursor-pointer"
+                className="absolute right-2.5 text-[#FFFFFF]/65 hover:text-[#FFFFFF] cursor-pointer"
               >
                 <X className="w-3.5 h-3.5" />
               </button>
@@ -187,39 +187,39 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           {isSearchOpen && (
-            <div className="absolute right-0 mt-2 w-80 sm:w-96 rounded-xl border border-blue-400/35 bg-[#071128]/98 shadow-[0_18px_48px_rgba(2,6,23,0.9)] overflow-hidden z-50">
-              <div className="flex items-center justify-between px-3.5 py-2 border-b border-blue-400/15 text-xs text-slate-400">
+            <div className="absolute right-0 mt-2 w-80 sm:w-96 rounded-xl border border-[#2E96F5]/50 bg-[#07173F] shadow-[0_18px_48px_rgba(7,23,63,0.92)] overflow-hidden z-50">
+              <div className="flex items-center justify-between px-3.5 py-2 border-b border-[#2E96F5]/25 text-xs text-[#FFFFFF]/70">
                 <span>
                   {query.trim()
                     ? `Matches (${filteredResults.length})`
                     : 'Suggested Mission Targets'}
                 </span>
-                <span className="font-mono text-[11px] text-slate-500">ESC to close</span>
+                <span className="font-mono text-[11px] text-[#FFFFFF]/55">ESC to close</span>
               </div>
 
               {filteredResults.length === 0 ? (
-                <div className="px-4 py-6 text-center text-sm text-slate-400">
+                <div className="px-4 py-6 text-center text-sm text-[#FFFFFF]/75">
                   No targets matching &ldquo;{query}&rdquo;. Try &ldquo;Planet X&rdquo;,
                   &ldquo;Andromeda&rdquo;, or &ldquo;Ice&rdquo;.
                 </div>
               ) : (
-                <ul className="max-h-72 overflow-y-auto divide-y divide-blue-400/10">
+                <ul className="max-h-72 overflow-y-auto divide-y divide-[#2E96F5]/15">
                   {filteredResults.map((item) => (
                     <li key={item.id}>
                       <button
                         type="button"
                         onClick={() => handleSelectItem(item)}
-                        className="w-full flex items-center justify-between gap-3 px-3.5 py-2.5 text-left hover:bg-blue-600/20 transition-colors cursor-pointer"
+                        className="w-full flex items-center justify-between gap-3 px-3.5 py-2.5 text-left hover:bg-[#0042A6]/60 transition-colors cursor-pointer"
                       >
                         <div className="min-w-0">
-                          <div className="text-sm font-medium text-slate-100 truncate">
+                          <div className="text-sm font-medium text-[#FFFFFF] truncate">
                             {item.title}
                           </div>
-                          <div className="text-xs text-slate-400 truncate">
+                          <div className="text-xs text-[#FFFFFF]/70 truncate">
                             {item.kind} · {item.subtitle}
                           </div>
                         </div>
-                        <ArrowUpRight className="w-4 h-4 text-blue-400 shrink-0" />
+                        <ArrowUpRight className="w-4 h-4 text-[#2E96F5] shrink-0" />
                       </button>
                     </li>
                   ))}

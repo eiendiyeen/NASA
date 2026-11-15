@@ -64,15 +64,15 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
   return (
     <section className="flex-1 flex flex-col px-4 sm:px-8 lg:px-10 pt-3 pb-10 gap-5">
       {/* Workspace Mode Bar & Calibration Controls */}
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-blue-400/20 pb-3.5">
-        <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-xl bg-[#07122b] border border-blue-400/25">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#2E96F5]/25 pb-3.5">
+        <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-xl bg-[#07173F]/85 border border-[#2E96F5]/35">
           <button
             type="button"
             onClick={() => onChangeMode(ExploreMode.SkySurvey)}
             className={`px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-lg whitespace-nowrap shrink-0 transition-colors cursor-pointer ${
               mode === ExploreMode.SkySurvey
-                ? 'bg-blue-600/50 text-white border border-blue-300/60'
-                : 'text-slate-300 hover:text-white'
+                ? 'bg-[#0960E1]/75 text-[#FFFFFF] border border-[#2E96F5]'
+                : 'text-[#FFFFFF]/75 hover:text-[#FFFFFF]'
             }`}
           >
             All-Sky Infrared Atlas
@@ -82,8 +82,8 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
             onClick={() => onChangeMode(ExploreMode.PlanetXOrbit)}
             className={`px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-lg whitespace-nowrap shrink-0 transition-colors cursor-pointer ${
               mode === ExploreMode.PlanetXOrbit
-                ? 'bg-blue-600/50 text-white border border-blue-300/60'
-                : 'text-slate-300 hover:text-white'
+                ? 'bg-[#0960E1]/75 text-[#FFFFFF] border border-[#2E96F5]'
+                : 'text-[#FFFFFF]/75 hover:text-[#FFFFFF]'
             }`}
           >
             Planet X Orbital Search
@@ -93,8 +93,8 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
             onClick={() => onChangeMode(ExploreMode.Phenomena)}
             className={`px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-lg whitespace-nowrap shrink-0 transition-colors cursor-pointer ${
               mode === ExploreMode.Phenomena
-                ? 'bg-blue-600/50 text-white border border-blue-300/60'
-                : 'text-slate-300 hover:text-white'
+                ? 'bg-[#0960E1]/75 text-[#FFFFFF] border border-[#2E96F5]'
+                : 'text-[#FFFFFF]/75 hover:text-[#FFFFFF]'
             }`}
           >
             Cosmic Phenomena Tracker
@@ -102,16 +102,16 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
         </div>
 
         {/* Live Telemetry Readout */}
-        <div className="flex items-center gap-4 text-xs font-mono tabular-nums text-slate-300">
+        <div className="flex items-center gap-4 text-xs font-mono tabular-nums text-[#FFFFFF]/80">
           <span>
-            FOV: <strong className="text-sky-300">3.5° × 11.3°</strong>
+            FOV: <strong className="text-[#2E96F5]">3.5° × 11.3°</strong>
           </span>
           <span aria-hidden="true">·</span>
           <span>
-            BANDS: <strong className="text-sky-300">0.75 – 5.00 μm</strong>
+            BANDS: <strong className="text-[#2E96F5]">0.75 – 5.00 μm</strong>
           </span>
           <span aria-hidden="true" className="hidden sm:inline">·</span>
-          <span className="hidden sm:inline text-emerald-400">● Survey Nominal</span>
+          <span className="hidden sm:inline text-[#EAFE07]">● Survey Nominal</span>
         </div>
       </div>
 
@@ -121,18 +121,18 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
           {COSMIC_PHENOMENA.map((phenom) => (
             <article
               key={phenom.id}
-              className="flex flex-col justify-between rounded-xl border border-blue-400/25 bg-[#071129]/85 p-6 gap-4"
+              className="flex flex-col justify-between rounded-xl border border-[#2E96F5]/35 bg-[#07173F]/80 p-6 gap-4"
             >
               <div>
-                <div className="flex items-center justify-between gap-3 text-xs text-slate-400 font-mono">
+                <div className="flex items-center justify-between gap-3 text-xs text-[#FFFFFF]/70 font-mono">
                   <span>{phenom.epochOrScale}</span>
                   <span
                     className={
                       phenom.statusLabel === 'Active Survey'
-                        ? 'text-emerald-400'
+                        ? 'text-[#EAFE07]'
                         : phenom.statusLabel === 'Candidate Signal'
-                          ? 'text-amber-300'
-                          : 'text-sky-300'
+                          ? 'text-[#E43700]'
+                          : 'text-[#2E96F5]'
                     }
                   >
                     {phenom.statusLabel === 'Active Survey' && '● Active Survey'}
@@ -141,34 +141,34 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                   </span>
                 </div>
 
-                <h2 className="mt-2 text-xl font-semibold text-white">{phenom.title}</h2>
-                <p className="mt-2 text-sm text-slate-300 leading-relaxed">
+                <h2 className="mt-2 text-xl font-semibold text-[#FFFFFF]">{phenom.title}</h2>
+                <p className="mt-2 text-sm text-[#FFFFFF]/80 leading-relaxed">
                   {phenom.description}
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-blue-400/15 flex flex-wrap items-end justify-between gap-4">
+              <div className="pt-4 border-t border-[#2E96F5]/20 flex flex-wrap items-end justify-between gap-4">
                 <div>
-                  <div className="text-xs text-slate-400 uppercase tracking-wider font-mono">
+                  <div className="text-xs text-[#FFFFFF]/65 uppercase tracking-wider font-mono">
                     {phenom.wavelengthRange}
                   </div>
                   <div className="mt-1 flex items-baseline gap-1.5">
-                    <span className="text-2xl font-bold font-mono tabular-nums text-white">
+                    <span className="text-2xl font-bold font-mono tabular-nums text-[#FFFFFF]">
                       {phenom.keyMetric}
                     </span>
-                    <span className="text-xs font-mono uppercase text-slate-400">
+                    <span className="text-xs font-mono uppercase text-[#FFFFFF]/65">
                       {phenom.metricUnit}
                     </span>
                   </div>
-                  <div className="mt-1 text-xs text-slate-400">{phenom.scientificMethod}</div>
+                  <div className="mt-1 text-xs text-[#FFFFFF]/65">{phenom.scientificMethod}</div>
                 </div>
 
                 <button
                   type="button"
                   onClick={() => onOpenSpectrum(phenom.linkedSpectralId)}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600/35 hover:bg-blue-600/55 border border-blue-400/50 text-xs font-medium text-white whitespace-nowrap shrink-0 transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#0960E1]/65 hover:bg-[#0960E1] border border-[#2E96F5] text-xs font-medium text-[#FFFFFF] whitespace-nowrap shrink-0 transition-colors cursor-pointer"
                 >
-                  <LineChart className="w-3.5 h-3.5 text-sky-300" />
+                  <LineChart className="w-3.5 h-3.5 text-[#2E96F5]" />
                   <span>Inspect Spectrum</span>
                 </button>
               </div>
@@ -179,9 +179,9 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
         /* Asymmetric Split Console: Main Viewport + Right Telemetry Inspector */
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
           {/* Main Interactive Celestial / Orbital Canvas */}
-          <div className="lg:col-span-8 flex flex-col rounded-xl border border-blue-400/25 bg-[#050c20]/90 overflow-hidden">
+          <div className="lg:col-span-8 flex flex-col rounded-xl border border-[#2E96F5]/35 bg-[#07173F]/85 overflow-hidden">
             {/* Viewport HUD Controls */}
-            <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-3 border-b border-blue-400/20 bg-[#07122c]/75">
+            <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-3 border-b border-[#2E96F5]/25 bg-[#07173F]/90">
               {mode === ExploreMode.SkySurvey ? (
                 <div className="flex flex-wrap items-center gap-1.5">
                   <button
@@ -189,8 +189,8 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                     onClick={() => setActiveBand(0)}
                     className={`px-2.5 py-1 rounded text-xs font-mono whitespace-nowrap shrink-0 cursor-pointer transition-colors ${
                       activeBand === 0
-                        ? 'bg-sky-500/30 text-white border border-sky-400/60'
-                        : 'text-slate-400 hover:text-white'
+                        ? 'bg-[#0960E1]/65 text-[#FFFFFF] border border-[#2E96F5]'
+                        : 'text-[#FFFFFF]/70 hover:text-[#FFFFFF]'
                     }`}
                   >
                     All 102 Ch
@@ -202,8 +202,8 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                       onClick={() => setActiveBand(band.bandNumber)}
                       className={`px-2.5 py-1 rounded text-xs font-mono whitespace-nowrap shrink-0 cursor-pointer transition-colors ${
                         activeBand === band.bandNumber
-                          ? 'bg-sky-500/30 text-white border border-sky-400/60'
-                          : 'text-slate-400 hover:text-white'
+                          ? 'bg-[#0960E1]/65 text-[#FFFFFF] border border-[#2E96F5]'
+                          : 'text-[#FFFFFF]/70 hover:text-[#FFFFFF]'
                       }`}
                     >
                       B{band.bandNumber} ({band.minUm.toFixed(1)}–{band.maxUm.toFixed(1)}μm)
@@ -212,9 +212,9 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                 </div>
               ) : (
                 <div className="flex flex-wrap items-center gap-3 text-xs">
-                  <label htmlFor="epochSlider" className="font-mono text-slate-300">
+                  <label htmlFor="epochSlider" className="font-mono text-[#FFFFFF]/85">
                     SURVEY EPOCH:{' '}
-                    <span className="text-sky-300 font-semibold tabular-nums">
+                    <span className="text-[#EAFE07] font-semibold tabular-nums">
                       {orbitEpochYr.toFixed(1)}
                     </span>
                   </label>
@@ -226,12 +226,12 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                     step={0.5}
                     value={orbitEpochYr}
                     onChange={(e) => setOrbitEpochYr(Number(e.target.value))}
-                    className="w-36 accent-sky-400 cursor-pointer"
+                    className="w-36 accent-[#2E96F5] cursor-pointer"
                   />
                   <button
                     type="button"
                     onClick={() => setOrbitEpochYr(2026.8)}
-                    className="inline-flex items-center gap-1 text-slate-400 hover:text-white cursor-pointer"
+                    className="inline-flex items-center gap-1 text-[#FFFFFF]/70 hover:text-[#FFFFFF] cursor-pointer"
                   >
                     <RotateCcw className="w-3.5 h-3.5" />
                     <span>Reset</span>
@@ -239,34 +239,32 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                 </div>
               )}
 
-              {mode === ExploreMode.SkySurvey && (
-                <div className="flex items-center gap-2 text-xs">
-                  <button
-                    type="button"
-                    onClick={() => setShowEcliptic((v) => !v)}
-                    className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded border whitespace-nowrap shrink-0 cursor-pointer ${
-                      showEcliptic
-                        ? 'border-blue-400/50 bg-blue-500/20 text-sky-200'
-                        : 'border-slate-700 text-slate-400'
-                    }`}
-                  >
-                    <Layers className="w-3.5 h-3.5" />
-                    <span>Ecliptic</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setShowGalacticPlane((v) => !v)}
-                    className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded border whitespace-nowrap shrink-0 cursor-pointer ${
-                      showGalacticPlane
-                        ? 'border-blue-400/50 bg-blue-500/20 text-sky-200'
-                        : 'border-slate-700 text-slate-400'
-                    }`}
-                  >
-                    <Eye className="w-3.5 h-3.5" />
-                    <span>Galactic Plane</span>
-                  </button>
-                </div>
-              )}
+              <div className="flex items-center gap-2 text-xs">
+                <button
+                  type="button"
+                  onClick={() => setShowEcliptic((v) => !v)}
+                  className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded border whitespace-nowrap shrink-0 cursor-pointer ${
+                    showEcliptic
+                      ? 'border-[#2E96F5] bg-[#0960E1]/40 text-[#FFFFFF]'
+                      : 'border-[#2E96F5]/25 text-[#FFFFFF]/60'
+                  }`}
+                >
+                  <Layers className="w-3.5 h-3.5" />
+                  <span>Ecliptic</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowGalacticPlane((v) => !v)}
+                  className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded border whitespace-nowrap shrink-0 cursor-pointer ${
+                    showGalacticPlane
+                      ? 'border-[#2E96F5] bg-[#0960E1]/40 text-[#FFFFFF]'
+                      : 'border-[#2E96F5]/25 text-[#FFFFFF]/60'
+                  }`}
+                >
+                  <Eye className="w-3.5 h-3.5" />
+                  <span>Galactic Plane</span>
+                </button>
+              </div>
             </div>
 
             {/* Interactive SVG Viewport */}
@@ -281,9 +279,9 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                 >
                   <defs>
                     <radialGradient id="mollweideBg" cx="50%" cy="50%" r="55%">
-                      <stop offset="0%" stopColor="#0b1d48" />
-                      <stop offset="68%" stopColor="#06102a" />
-                      <stop offset="100%" stopColor="#030714" />
+                      <stop offset="0%" stopColor="#0042A6" />
+                      <stop offset="68%" stopColor="#07173F" />
+                      <stop offset="100%" stopColor="#07173F" />
                     </radialGradient>
                   </defs>
 
@@ -294,8 +292,8 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                     rx="465"
                     ry="230"
                     fill="url(#mollweideBg)"
-                    stroke="#3b82f6"
-                    strokeOpacity="0.55"
+                    stroke="#2E96F5"
+                    strokeOpacity="0.65"
                     strokeWidth="1.6"
                   />
 
@@ -309,8 +307,8 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                         y1={260 + dy}
                         x2={500 + halfWidth}
                         y2={260 + dy}
-                        stroke="#60a5fa"
-                        strokeOpacity={dy === 0 ? '0.35' : '0.16'}
+                        stroke="#2E96F5"
+                        strokeOpacity={dy === 0 ? '0.45' : '0.2'}
                         strokeDasharray={dy === 0 ? undefined : '4 5'}
                       />
                     );
@@ -322,8 +320,8 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                       key={dx}
                       d={`M 500 30 Q ${500 + dx * 1.32} 260 500 490`}
                       fill="none"
-                      stroke="#60a5fa"
-                      strokeOpacity={dx === 0 ? '0.35' : '0.16'}
+                      stroke="#2E96F5"
+                      strokeOpacity={dx === 0 ? '0.45' : '0.2'}
                       strokeDasharray={dx === 0 ? undefined : '4 5'}
                     />
                   ))}
@@ -333,8 +331,8 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                     <path
                       d="M 55 280 C 260 110, 680 410, 945 245"
                       fill="none"
-                      stroke="#38bdf8"
-                      strokeOpacity="0.18"
+                      stroke="#2E96F5"
+                      strokeOpacity="0.24"
                       strokeWidth="36"
                       strokeLinecap="round"
                     />
@@ -346,8 +344,8 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                       <path
                         d="M 42 260 C 265 375, 735 145, 958 260"
                         fill="none"
-                        stroke="#f59e0b"
-                        strokeOpacity="0.6"
+                        stroke="#EAFE07"
+                        strokeOpacity="0.7"
                         strokeWidth="1.6"
                         strokeDasharray="7 5"
                       />
@@ -356,11 +354,11 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                         cy="118"
                         r="26"
                         fill="none"
-                        stroke="#38bdf8"
-                        strokeOpacity="0.45"
+                        stroke="#2E96F5"
+                        strokeOpacity="0.65"
                         strokeDasharray="3 3"
                       />
-                      <text x="812" y="84" textAnchor="middle" fill="#7dd3fc" fontSize="10" fontFamily="monospace">
+                      <text x="812" y="84" textAnchor="middle" fill="#FFFFFF" fontSize="10" fontFamily="monospace">
                         NEP DEEP FIELD
                       </text>
                     </g>
@@ -371,12 +369,12 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                     const isSelected = obj.id === selectedObject.id;
                     const accent =
                       obj.category === 'Trans-Neptunian'
-                        ? '#f59e0b'
+                        ? '#EAFE07'
                         : obj.category === 'Galaxy'
-                          ? '#60a5fa'
+                          ? '#2E96F5'
                           : obj.category === 'Molecular Cloud'
-                            ? '#34d399'
-                            : '#c084fc';
+                            ? '#E43700'
+                            : '#FFFFFF';
                     return (
                       <g
                         key={obj.id}
@@ -390,7 +388,7 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                               cy={obj.skyY}
                               r="20"
                               fill={accent}
-                              fillOpacity="0.18"
+                              fillOpacity="0.2"
                               stroke={accent}
                               strokeWidth="1.5"
                             />
@@ -399,7 +397,7 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                               y1={obj.skyY}
                               x2={obj.skyX - 12}
                               y2={obj.skyY}
-                              stroke="#e2e8f0"
+                              stroke="#FFFFFF"
                               strokeWidth="1.3"
                             />
                             <line
@@ -407,7 +405,7 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                               y1={obj.skyY}
                               x2={obj.skyX + 26}
                               y2={obj.skyY}
-                              stroke="#e2e8f0"
+                              stroke="#FFFFFF"
                               strokeWidth="1.3"
                             />
                           </>
@@ -417,13 +415,14 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                           cy={obj.skyY}
                           r={isSelected ? 7.5 : 5.5}
                           fill={accent}
-                          stroke="#ffffff"
+                          stroke="#FFFFFF"
                           strokeWidth="1.4"
                         />
                         <text
                           x={obj.skyX + 12}
                           y={obj.skyY + 4}
-                          fill={isSelected ? '#ffffff' : '#cbd5e1'}
+                          fill="#FFFFFF"
+                          opacity={isSelected ? '1' : '0.85'}
                           fontSize="12"
                           fontWeight={isSelected ? '600' : '400'}
                         >
@@ -449,14 +448,15 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                         cy="265"
                         r={r}
                         fill="none"
-                        stroke="#3b82f6"
-                        strokeOpacity="0.18"
+                        stroke="#2E96F5"
+                        strokeOpacity="0.25"
                         strokeDasharray="4 6"
                       />
                       <text
                         x={534}
                         y={265 - r + 13}
-                        fill="#64748b"
+                        fill="#FFFFFF"
+                        fillOpacity="0.6"
                         fontSize="10"
                         fontFamily="monospace"
                       >
@@ -471,16 +471,16 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                     cy="265"
                     r="55"
                     fill="none"
-                    stroke="#38bdf8"
-                    strokeOpacity="0.35"
+                    stroke="#2E96F5"
+                    strokeOpacity="0.4"
                     strokeWidth="12"
                   />
-                  <circle cx="530" cy="265" r="5" fill="#fde047" />
-                  <text x="542" y="269" fill="#fef08a" fontSize="11" fontFamily="monospace">
+                  <circle cx="530" cy="265" r="5" fill="#EAFE07" />
+                  <text x="542" y="269" fill="#EAFE07" fontSize="11" fontFamily="monospace">
                     SOL + KUIPER BELT (30–50 AU)
                   </text>
 
-                  {/* Clustered eTNO Orbits (Sedna, 2012 VP113, Leleakuhonua) */}
+                  {/* Clustered eTNO Orbits */}
                   <ellipse
                     cx="655"
                     cy="285"
@@ -488,8 +488,8 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                     ry="78"
                     transform="rotate(14 655 285)"
                     fill="none"
-                    stroke="#34d399"
-                    strokeOpacity="0.55"
+                    stroke="#2E96F5"
+                    strokeOpacity="0.7"
                     strokeWidth="1.5"
                   />
                   <ellipse
@@ -499,8 +499,8 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                     ry="68"
                     transform="rotate(-12 638 242)"
                     fill="none"
-                    stroke="#38bdf8"
-                    strokeOpacity="0.45"
+                    stroke="#0960E1"
+                    strokeOpacity="0.7"
                     strokeWidth="1.3"
                   />
                   <ellipse
@@ -510,7 +510,7 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                     ry="72"
                     transform="rotate(4 670 262)"
                     fill="none"
-                    stroke="#818cf8"
+                    stroke="#FFFFFF"
                     strokeOpacity="0.45"
                     strokeWidth="1.3"
                   />
@@ -523,12 +523,12 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                     ry="168"
                     transform="rotate(-8 390 260)"
                     fill="none"
-                    stroke="#f59e0b"
+                    stroke="#EAFE07"
                     strokeWidth="2.2"
                     strokeDasharray="8 5"
                   />
 
-                  {/* Animated / Scrubbable Planet X Position Along Aphelion Corridor */}
+                  {/* Scrubbable Planet X & Sedna Positions */}
                   {(() => {
                     const phaseRad = ((212 + (orbitEpochYr - 2025) * 1.8) * Math.PI) / 180;
                     const px = 390 + 245 * Math.cos(phaseRad);
@@ -545,8 +545,8 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                           y1="265"
                           x2={px}
                           y2={py}
-                          stroke="#fbbf24"
-                          strokeOpacity="0.35"
+                          stroke="#EAFE07"
+                          strokeOpacity="0.45"
                           strokeDasharray="3 3"
                         />
 
@@ -559,16 +559,16 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                             cx={px}
                             cy={py}
                             r="18"
-                            fill="#f59e0b"
+                            fill="#EAFE07"
                             fillOpacity="0.2"
-                            stroke="#fbbf24"
+                            stroke="#EAFE07"
                             strokeWidth="1.4"
                           />
-                          <circle cx={px} cy={py} r="7" fill="#fbbf24" stroke="#ffffff" strokeWidth="1.5" />
-                          <text x={px + 14} y={py - 6} fill="#fef3c7" fontSize="12" fontWeight="600">
+                          <circle cx={px} cy={py} r="7" fill="#EAFE07" stroke="#FFFFFF" strokeWidth="1.5" />
+                          <text x={px + 14} y={py - 6} fill="#FFFFFF" fontSize="12" fontWeight="600">
                             Planet X Candidate
                           </text>
-                          <text x={px + 14} y={py + 10} fill="#94a3b8" fontSize="10" fontFamily="monospace">
+                          <text x={px + 14} y={py + 10} fill="#FFFFFF" fillOpacity="0.7" fontSize="10" fontFamily="monospace">
                             a ≈ 460 AU · m_AB 21.4
                           </text>
                         </g>
@@ -578,8 +578,8 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                           onClick={() => onSelectObjectId('sedna-90377')}
                           className="cursor-pointer"
                         >
-                          <circle cx={sx} cy={sy} r="6" fill="#34d399" stroke="#ffffff" strokeWidth="1.4" />
-                          <text x={sx + 11} y={sy + 4} fill="#d1fae5" fontSize="11">
+                          <circle cx={sx} cy={sy} r="6" fill="#2E96F5" stroke="#FFFFFF" strokeWidth="1.4" />
+                          <text x={sx + 11} y={sy + 4} fill="#FFFFFF" fontSize="11">
                             90377 Sedna (83.7 AU)
                           </text>
                         </g>
@@ -590,8 +590,8 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
               )}
 
               {/* Bottom-Left Crosshair Coordinate HUD */}
-              <div className="pointer-events-none absolute bottom-3 left-4 flex items-center gap-2 rounded-lg bg-[#040a1a]/90 border border-blue-400/25 px-3 py-1.5 text-xs font-mono tabular-nums text-slate-300">
-                <Crosshair className="w-3.5 h-3.5 text-sky-400" />
+              <div className="pointer-events-none absolute bottom-3 left-4 flex items-center gap-2 rounded-lg bg-[#07173F]/90 border border-[#2E96F5]/35 px-3 py-1.5 text-xs font-mono tabular-nums text-[#FFFFFF]/85">
+                <Crosshair className="w-3.5 h-3.5 text-[#2E96F5]" />
                 <span>
                   RA {cursorCoords.ra} · DEC {cursorCoords.dec}
                 </span>
@@ -600,17 +600,17 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
           </div>
 
           {/* Right Telemetry & Object Inspector Panel */}
-          <aside className="lg:col-span-4 flex flex-col justify-between rounded-xl border border-blue-400/25 bg-[#071129]/90 p-5 gap-4">
+          <aside className="lg:col-span-4 flex flex-col justify-between rounded-xl border border-[#2E96F5]/35 bg-[#07173F]/85 p-5 gap-4">
             <div className="space-y-4">
               {/* Preview Image */}
-              <div className="relative h-44 w-full rounded-lg overflow-hidden border border-blue-400/25 bg-[#040918]">
+              <div className="relative h-44 w-full rounded-lg overflow-hidden border border-[#2E96F5]/35 bg-[#07173F]">
                 <ResilientNasaImage
                   src={selectedObject.imageUrl}
                   alt={selectedObject.name}
                   fallbackTitle={selectedObject.name}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#071129] via-transparent to-transparent" />
-                <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-xs font-mono text-slate-200">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#07173F] via-transparent to-transparent" />
+                <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-xs font-mono text-[#FFFFFF]">
                   <span>{selectedObject.category}</span>
                   <span>NASA {selectedObject.nasaId}</span>
                 </div>
@@ -618,9 +618,9 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
 
               {/* Title & Coordinates */}
               <div>
-                <div className="text-xs font-mono text-sky-300">{selectedObject.designation}</div>
-                <h2 className="mt-1 text-xl font-bold text-white">{selectedObject.name}</h2>
-                <div className="mt-1.5 flex items-center gap-2 text-xs font-mono tabular-nums text-slate-400">
+                <div className="text-xs font-mono text-[#2E96F5]">{selectedObject.designation}</div>
+                <h2 className="mt-1 text-xl font-bold text-[#FFFFFF]">{selectedObject.name}</h2>
+                <div className="mt-1.5 flex items-center gap-2 text-xs font-mono tabular-nums text-[#FFFFFF]/70">
                   <span>RA {selectedObject.ra}</span>
                   <span aria-hidden="true">·</span>
                   <span>DEC {selectedObject.dec}</span>
@@ -628,67 +628,67 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
               </div>
 
               {/* Quantitative Metrics Grid */}
-              <div className="grid grid-cols-2 gap-3 pt-2 border-t border-blue-400/15">
+              <div className="grid grid-cols-2 gap-3 pt-2 border-t border-[#2E96F5]/20">
                 <div>
-                  <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400">
+                  <div className="text-[11px] font-mono uppercase tracking-wider text-[#FFFFFF]/65">
                     Distance
                   </div>
-                  <div className="text-base font-mono font-semibold tabular-nums text-white">
+                  <div className="text-base font-mono font-semibold tabular-nums text-[#FFFFFF]">
                     {selectedObject.distanceLabel}
                   </div>
                 </div>
                 <div>
-                  <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400">
+                  <div className="text-[11px] font-mono uppercase tracking-wider text-[#FFFFFF]/65">
                     Peak IR Band
                   </div>
-                  <div className="text-base font-mono font-semibold tabular-nums text-sky-300">
+                  <div className="text-base font-mono font-semibold tabular-nums text-[#2E96F5]">
                     {selectedObject.peakBandMicrons.toFixed(2)}{' '}
-                    <span className="text-xs text-slate-400">μm</span>
+                    <span className="text-xs text-[#FFFFFF]/65">μm</span>
                   </div>
                 </div>
                 <div>
-                  <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400">
+                  <div className="text-[11px] font-mono uppercase tracking-wider text-[#FFFFFF]/65">
                     Kinematics / z
                   </div>
-                  <div className="text-sm font-mono font-medium tabular-nums text-slate-200">
+                  <div className="text-sm font-mono font-medium tabular-nums text-[#FFFFFF]/90">
                     {selectedObject.redshiftOrVelocity}
                   </div>
                 </div>
                 <div>
-                  <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400">
+                  <div className="text-[11px] font-mono uppercase tracking-wider text-[#FFFFFF]/65">
                     Effective Temp
                   </div>
-                  <div className="text-sm font-mono font-medium tabular-nums text-slate-200">
+                  <div className="text-sm font-mono font-medium tabular-nums text-[#FFFFFF]/90">
                     {selectedObject.temperatureK}{' '}
-                    <span className="text-xs text-slate-400">K</span>
+                    <span className="text-xs text-[#FFFFFF]/65">K</span>
                   </div>
                 </div>
               </div>
 
-              <p className="text-sm text-slate-300 leading-relaxed">{selectedObject.summary}</p>
+              <p className="text-sm text-[#FFFFFF]/80 leading-relaxed">{selectedObject.summary}</p>
 
-              <div className="pt-2 border-t border-blue-400/15">
-                <div className="text-xs font-semibold text-sky-300">SPHEREx Observation Role</div>
-                <p className="mt-1 text-xs text-slate-300 leading-relaxed">
+              <div className="pt-2 border-t border-[#2E96F5]/20">
+                <div className="text-xs font-semibold text-[#2E96F5]">SPHEREx Observation Role</div>
+                <p className="mt-1 text-xs text-[#FFFFFF]/80 leading-relaxed">
                   {selectedObject.spherexInsight}
                 </p>
               </div>
             </div>
 
             {/* Action Buttons */}
-            <div className="pt-3 border-t border-blue-400/15 flex flex-wrap items-center gap-2.5">
+            <div className="pt-3 border-t border-[#2E96F5]/20 flex flex-wrap items-center gap-2.5">
               <button
                 type="button"
                 onClick={() => onOpenSpectrum(selectedObject.spectralTargetId)}
-                className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-blue-600/45 hover:bg-blue-600/65 border border-blue-300/60 text-xs font-semibold text-white whitespace-nowrap shrink-0 transition-colors cursor-pointer"
+                className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#0960E1]/75 hover:bg-[#0960E1] border border-[#2E96F5] text-xs font-semibold text-[#FFFFFF] whitespace-nowrap shrink-0 transition-colors cursor-pointer"
               >
-                <LineChart className="w-4 h-4 text-sky-200" />
+                <LineChart className="w-4 h-4 text-[#FFFFFF]" />
                 <span>Analyze 102-Ch Spectrum</span>
               </button>
               <button
                 type="button"
                 onClick={() => onOpenGalleryItem(selectedObject.nasaId)}
-                className="px-3.5 py-2.5 rounded-lg border border-blue-400/35 hover:border-blue-300/70 text-xs font-medium text-slate-200 hover:text-white whitespace-nowrap shrink-0 transition-colors cursor-pointer"
+                className="px-3.5 py-2.5 rounded-lg border border-[#2E96F5]/45 hover:border-[#2E96F5] text-xs font-medium text-[#FFFFFF]/90 hover:text-[#FFFFFF] whitespace-nowrap shrink-0 transition-colors cursor-pointer"
               >
                 Full Capture
               </button>
