@@ -23,11 +23,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   onNavigateTab,
 }) => {
   const [earthImgError, setEarthImgError] = useState(false);
-  const [activeHotspot, setActiveHotspot] = useState<'shield' | 'bus' | 'solar' | null>(null);
 
   return (
     <section className="relative flex-1 flex flex-col justify-between px-5 sm:px-9 lg:px-14 pt-6 pb-8 overflow-hidden min-h-[680px] lg:min-h-[760px]">
       {/* Cosmic & Orbital Background Stage */}
+<<<<<<< HEAD
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
         {/* Distant Shadowed Planet X Sphere in Upper Center Sky */}
         <div className="hidden sm:block absolute left-[49%] top-[13%] w-16 h-16 lg:w-20 lg:h-20">
@@ -75,6 +75,29 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         {/* Left Hero Column */}
         <div className="lg:col-span-6 max-w-xl">
           <h1 className="font-display italic font-black text-4xl sm:text-6xl lg:text-[66px] leading-[1.05] tracking-tight text-[#FFFFFF] drop-shadow-[0_4px_24px_rgba(7,23,63,0.75)]">
+=======
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden bg-[#030716]">
+        {/* Full-Screen NASA Artemis I Earth Observation Background */}
+        {!earthImgError && (
+          <img
+            src={VERIFIED_NASA_ASSETS.earthLimbBlue}
+            alt=""
+            referrerPolicy="no-referrer"
+            onError={() => setEarthImgError(true)}
+            className="w-full h-full object-cover object-center opacity-85"
+          />
+        )}
+
+        {/* Measured Contrast Scrims for Headline, Spacecraft & Card Legibility */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#030716]/92 via-[#040b21]/40 to-[#030716]/65" />
+        <div className="absolute inset-y-0 left-0 w-full lg:w-[62%] bg-gradient-to-r from-[#030716]/92 via-[#04091a]/70 to-transparent" />
+      </div>
+
+      {/* Main Hero Copy */}
+      <div className="relative z-20 flex items-center my-auto py-4 lg:py-6">
+        <div className="max-w-xl">
+          <h1 className="font-display italic font-extrabold text-4xl sm:text-6xl lg:text-[66px] leading-[1.05] tracking-tight text-white drop-shadow-[0_4px_24px_rgba(3,7,18,0.9)]">
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
             Planet X and
             <br />
             SPHEREx
@@ -104,6 +127,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             </button>
           </div>
         </div>
+<<<<<<< HEAD
 
         {/* Right Hero Column: High-Detail SPHEREx Observatory Illustration */}
         <div className="lg:col-span-6 relative flex items-center justify-center lg:justify-end">
@@ -353,6 +377,8 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
             )}
           </div>
         </div>
+=======
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
       </div>
 
       {/* Bottom 4 Interactive Feature Cards */}

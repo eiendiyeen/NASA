@@ -1,7 +1,15 @@
-import React, { useState } from 'react';
-import { VERIFIED_NASA_ASSETS } from '../data/nasaData';
-
-export function NasaMeatballLogo({ className = 'w-12 h-12' }: { className?: string }) {
+import React, { useState } from "react";
+import {
+  ChartBarIcon,
+  PlanetIcon,
+  SparkleIcon,
+  SpiralIcon,
+} from "@phosphor-icons/react";
+export function NasaMeatballLogo({
+  className = "w-12 h-12",
+}: {
+  className?: string;
+}) {
   return (
     <svg
       viewBox="0 0 120 120"
@@ -18,7 +26,19 @@ export function NasaMeatballLogo({ className = 'w-12 h-12' }: { className?: stri
       </defs>
 
       {/* Blue Sphere */}
+<<<<<<< HEAD
       <circle cx="60" cy="60" r="50" fill="url(#nasaBlueSphere)" stroke="#2E96F5" strokeWidth="1.2" strokeOpacity="0.6" />
+=======
+      <circle
+        cx="60"
+        cy="60"
+        r="50"
+        fill="url(#nasaBlueSphere)"
+        stroke="#2c6bed"
+        strokeWidth="1.2"
+        strokeOpacity="0.45"
+      />
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
 
       {/* Tiny Stars */}
       <circle cx="36" cy="31" r="1.3" fill="#FFFFFF" />
@@ -30,8 +50,19 @@ export function NasaMeatballLogo({ className = 'w-12 h-12' }: { className?: stri
       <circle cx="76" cy="88" r="1.2" fill="#FFFFFF" />
       <circle cx="89" cy="75" r="1.0" fill="#FFFFFF" opacity="0.8" />
       {/* 4-point star sparkle */}
+<<<<<<< HEAD
       <path d="M40 36 L41 39 L44 40 L41 41 L40 44 L39 41 L36 40 L39 39 Z" fill="#FFFFFF" />
       <path d="M68 83 L68.8 85.2 L71 86 L68.8 86.8 L68 89 L67.2 86.8 L65 86 L67.2 85.2 Z" fill="#FFFFFF" />
+=======
+      <path
+        d="M40 36 L41 39 L44 40 L41 41 L40 44 L39 41 L36 40 L39 39 Z"
+        fill="#ffffff"
+      />
+      <path
+        d="M68 83 L68.8 85.2 L71 86 L68.8 86.8 L68 89 L67.2 86.8 L65 86 L67.2 85.2 Z"
+        fill="#ffffff"
+      />
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
 
       {/* White Orbital Sweep (Back Arc) */}
       <path
@@ -77,6 +108,7 @@ export function NasaMeatballLogo({ className = 'w-12 h-12' }: { className?: stri
 
 export function RingedPlanetCardIcon() {
   return (
+<<<<<<< HEAD
     <svg viewBox="0 0 64 64" className="w-12 h-12 shrink-0" aria-hidden="true">
       <defs>
         <linearGradient id="planetBodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -114,13 +146,22 @@ export function RingedPlanetCardIcon() {
       />
       <circle cx="27" cy="26" r="3" fill="#FFFFFF" opacity="0.55" />
     </svg>
+=======
+    <div className="w-12 h-12 shrink-0 flex items-center justify-center rounded-xl bg-blue-500/10 border border-blue-400/25">
+      <PlanetIcon
+        size={30}
+        weight="duotone"
+        className="text-sky-400 drop-shadow-[0_0_8px_rgba(56,189,248,0.45)]"
+        aria-hidden="true"
+      />
+    </div>
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
   );
 }
 
 export function GalaxySpiralCardIcon() {
-  const [failed, setFailed] = useState(false);
-
   return (
+<<<<<<< HEAD
     <div className="relative w-14 h-12 shrink-0 flex items-center justify-center rounded-lg overflow-hidden">
       {!failed ? (
         <img
@@ -152,12 +193,22 @@ export function GalaxySpiralCardIcon() {
         </svg>
       )}
       <div className="pointer-events-none absolute inset-0 rounded-lg ring-1 ring-[#2E96F5]/30 bg-radial from-transparent via-transparent to-[#07173F]" />
+=======
+    <div className="w-12 h-12 shrink-0 flex items-center justify-center rounded-xl bg-blue-500/10 border border-blue-400/25">
+      <SpiralIcon
+        size={30}
+        weight="duotone"
+        className="text-sky-400 drop-shadow-[0_0_8px_rgba(56,189,248,0.45)]"
+        aria-hidden="true"
+      />
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
     </div>
   );
 }
 
 export function CosmicStarburstCardIcon() {
   return (
+<<<<<<< HEAD
     <svg viewBox="0 0 64 64" className="w-12 h-12 shrink-0" aria-hidden="true">
       <defs>
         <linearGradient id="starGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -176,11 +227,22 @@ export function CosmicStarburstCardIcon() {
       <polygon points="15,49 20,51 17,55 13,52" fill="#0960E1" />
       <circle cx="49" cy="17" r="2" fill="#FFFFFF" />
     </svg>
+=======
+    <div className="w-12 h-12 shrink-0 flex items-center justify-center rounded-xl bg-blue-500/10 border border-blue-400/25">
+      <SparkleIcon
+        size={30}
+        weight="duotone"
+        className="text-sky-400 drop-shadow-[0_0_8px_rgba(56,189,248,0.45)]"
+        aria-hidden="true"
+      />
+    </div>
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
   );
 }
 
 export function NasaDataBarsCardIcon() {
   return (
+<<<<<<< HEAD
     <svg viewBox="0 0 64 64" className="w-12 h-12 shrink-0" aria-hidden="true">
       <defs>
         <linearGradient id="barGrad" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -192,6 +254,16 @@ export function NasaDataBarsCardIcon() {
       <rect x="27" y="26" width="9" height="26" rx="2" fill="url(#barGrad)" opacity="0.92" />
       <rect x="41" y="14" width="9" height="38" rx="2" fill="url(#barGrad)" />
     </svg>
+=======
+    <div className="w-12 h-12 shrink-0 flex items-center justify-center rounded-xl bg-blue-500/10 border border-blue-400/25">
+      <ChartBarIcon
+        size={30}
+        weight="duotone"
+        className="text-sky-400 drop-shadow-[0_0_8px_rgba(56,189,248,0.45)]"
+        aria-hidden="true"
+      />
+    </div>
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
   );
 }
 
@@ -205,7 +277,7 @@ interface ResilientNasaImageProps {
 export const ResilientNasaImage: React.FC<ResilientNasaImageProps> = ({
   src,
   alt,
-  className = 'w-full h-full object-cover',
+  className = "w-full h-full object-cover",
   fallbackTitle,
 }) => {
   const [hasError, setHasError] = useState(false);

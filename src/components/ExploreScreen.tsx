@@ -1,8 +1,12 @@
-import React, { useMemo, useState } from 'react';
-import { Crosshair, Eye, Layers, LineChart, RotateCcw } from 'lucide-react';
-import { CelestialObject, ExploreMode } from '../types/space';
-import { CELESTIAL_OBJECTS, COSMIC_PHENOMENA, DETECTOR_BANDS } from '../data/nasaData';
-import { ResilientNasaImage } from './NasaInsignia';
+import React, { useMemo, useState } from "react";
+import { Crosshair, LineChart, RotateCcw } from "lucide-react";
+import { CelestialObject, ExploreMode } from "../types/space";
+import {
+  CELESTIAL_OBJECTS,
+  COSMIC_PHENOMENA,
+  DETECTOR_BANDS,
+} from "../data/nasaData";
+import { ResilientNasaImage } from "./NasaInsignia";
 
 interface ExploreScreenProps {
   mode: ExploreMode;
@@ -22,18 +26,19 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
   onOpenGalleryItem,
 }) => {
   const [activeBand, setActiveBand] = useState<number>(0); // 0 = All Bands, 1..6 = LVF Band
-  const [showEcliptic, setShowEcliptic] = useState(true);
-  const [showGalacticPlane, setShowGalacticPlane] = useState(true);
-  const [cursorCoords, setCursorCoords] = useState<{ ra: string; dec: string }>({
-    ra: '12h 00m',
-    dec: '+00° 00′',
-  });
+  const [cursorCoords, setCursorCoords] = useState<{ ra: string; dec: string }>(
+    {
+      ra: "12h 00m",
+      dec: "+00° 00′",
+    },
+  );
   const [orbitEpochYr, setOrbitEpochYr] = useState<number>(2026.8);
 
   const selectedObject: CelestialObject = useMemo(
     () =>
-      CELESTIAL_OBJECTS.find((o) => o.id === selectedObjectId) || CELESTIAL_OBJECTS[0],
-    [selectedObjectId]
+      CELESTIAL_OBJECTS.find((o) => o.id === selectedObjectId) ||
+      CELESTIAL_OBJECTS[0],
+    [selectedObjectId],
   );
 
   const visibleObjects = useMemo(() => {
@@ -42,7 +47,8 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
     if (!band) return CELESTIAL_OBJECTS;
     return CELESTIAL_OBJECTS.filter(
       (obj) =>
-        obj.peakBandMicrons >= band.minUm - 0.65 && obj.peakBandMicrons <= band.maxUm + 0.65
+        obj.peakBandMicrons >= band.minUm - 0.65 &&
+        obj.peakBandMicrons <= band.maxUm + 0.65,
     );
   }, [activeBand]);
 
@@ -54,9 +60,9 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
     const hrs = Math.floor(Number(raHours));
     const mins = Math.floor((Number(raHours) - hrs) * 60);
     const decDeg = Math.round((0.5 - relY) * 180);
-    const sign = decDeg >= 0 ? '+' : '';
+    const sign = decDeg >= 0 ? "+" : "";
     setCursorCoords({
-      ra: `${String(hrs).padStart(2, '0')}h ${String(mins).padStart(2, '0')}m`,
+      ra: `${String(hrs).padStart(2, "0")}h ${String(mins).padStart(2, "0")}m`,
       dec: `${sign}${decDeg}°`,
     });
   };
@@ -71,8 +77,13 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
             onClick={() => onChangeMode(ExploreMode.SkySurvey)}
             className={`px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-lg whitespace-nowrap shrink-0 transition-colors cursor-pointer ${
               mode === ExploreMode.SkySurvey
+<<<<<<< HEAD
                 ? 'bg-[#0960E1]/75 text-[#FFFFFF] border border-[#2E96F5]'
                 : 'text-[#FFFFFF]/75 hover:text-[#FFFFFF]'
+=======
+                ? "bg-blue-600/50 text-white border border-blue-300/60"
+                : "text-slate-300 hover:text-white"
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
             }`}
           >
             All-Sky Infrared Atlas
@@ -82,8 +93,13 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
             onClick={() => onChangeMode(ExploreMode.PlanetXOrbit)}
             className={`px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-lg whitespace-nowrap shrink-0 transition-colors cursor-pointer ${
               mode === ExploreMode.PlanetXOrbit
+<<<<<<< HEAD
                 ? 'bg-[#0960E1]/75 text-[#FFFFFF] border border-[#2E96F5]'
                 : 'text-[#FFFFFF]/75 hover:text-[#FFFFFF]'
+=======
+                ? "bg-blue-600/50 text-white border border-blue-300/60"
+                : "text-slate-300 hover:text-white"
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
             }`}
           >
             Planet X Orbital Search
@@ -93,8 +109,13 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
             onClick={() => onChangeMode(ExploreMode.Phenomena)}
             className={`px-3.5 py-1.5 text-xs sm:text-sm font-medium rounded-lg whitespace-nowrap shrink-0 transition-colors cursor-pointer ${
               mode === ExploreMode.Phenomena
+<<<<<<< HEAD
                 ? 'bg-[#0960E1]/75 text-[#FFFFFF] border border-[#2E96F5]'
                 : 'text-[#FFFFFF]/75 hover:text-[#FFFFFF]'
+=======
+                ? "bg-blue-600/50 text-white border border-blue-300/60"
+                : "text-slate-300 hover:text-white"
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
             }`}
           >
             Cosmic Phenomena Tracker
@@ -110,8 +131,17 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
           <span>
             BANDS: <strong className="text-[#2E96F5]">0.75 – 5.00 μm</strong>
           </span>
+<<<<<<< HEAD
           <span aria-hidden="true" className="hidden sm:inline">·</span>
           <span className="hidden sm:inline text-[#EAFE07]">● Survey Nominal</span>
+=======
+          <span aria-hidden="true" className="hidden sm:inline">
+            ·
+          </span>
+          <span className="hidden sm:inline text-emerald-400">
+            ● Survey Nominal
+          </span>
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
         </div>
       </div>
 
@@ -128,21 +158,39 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                   <span>{phenom.epochOrScale}</span>
                   <span
                     className={
+<<<<<<< HEAD
                       phenom.statusLabel === 'Active Survey'
                         ? 'text-[#EAFE07]'
                         : phenom.statusLabel === 'Candidate Signal'
                           ? 'text-[#E43700]'
                           : 'text-[#2E96F5]'
+=======
+                      phenom.statusLabel === "Active Survey"
+                        ? "text-emerald-400"
+                        : phenom.statusLabel === "Candidate Signal"
+                          ? "text-amber-300"
+                          : "text-sky-300"
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
                     }
                   >
-                    {phenom.statusLabel === 'Active Survey' && '● Active Survey'}
-                    {phenom.statusLabel === 'Candidate Signal' && '▲ Candidate Signal'}
-                    {phenom.statusLabel === 'Calibrated Baseline' && '◆ Calibrated Baseline'}
+                    {phenom.statusLabel === "Active Survey" &&
+                      "● Active Survey"}
+                    {phenom.statusLabel === "Candidate Signal" &&
+                      "▲ Candidate Signal"}
+                    {phenom.statusLabel === "Calibrated Baseline" &&
+                      "◆ Calibrated Baseline"}
                   </span>
                 </div>
 
+<<<<<<< HEAD
                 <h2 className="mt-2 text-xl font-semibold text-[#FFFFFF]">{phenom.title}</h2>
                 <p className="mt-2 text-sm text-[#FFFFFF]/80 leading-relaxed">
+=======
+                <h2 className="mt-2 text-xl font-semibold text-white">
+                  {phenom.title}
+                </h2>
+                <p className="mt-2 text-sm text-slate-300 leading-relaxed">
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
                   {phenom.description}
                 </p>
               </div>
@@ -160,7 +208,13 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                       {phenom.metricUnit}
                     </span>
                   </div>
+<<<<<<< HEAD
                   <div className="mt-1 text-xs text-[#FFFFFF]/65">{phenom.scientificMethod}</div>
+=======
+                  <div className="mt-1 text-xs text-slate-400">
+                    {phenom.scientificMethod}
+                  </div>
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
                 </div>
 
                 <button
@@ -189,8 +243,13 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                     onClick={() => setActiveBand(0)}
                     className={`px-2.5 py-1 rounded text-xs font-mono whitespace-nowrap shrink-0 cursor-pointer transition-colors ${
                       activeBand === 0
+<<<<<<< HEAD
                         ? 'bg-[#0960E1]/65 text-[#FFFFFF] border border-[#2E96F5]'
                         : 'text-[#FFFFFF]/70 hover:text-[#FFFFFF]'
+=======
+                        ? "bg-sky-500/30 text-white border border-sky-400/60"
+                        : "text-slate-400 hover:text-white"
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
                     }`}
                   >
                     All 102 Ch
@@ -202,19 +261,34 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                       onClick={() => setActiveBand(band.bandNumber)}
                       className={`px-2.5 py-1 rounded text-xs font-mono whitespace-nowrap shrink-0 cursor-pointer transition-colors ${
                         activeBand === band.bandNumber
+<<<<<<< HEAD
                           ? 'bg-[#0960E1]/65 text-[#FFFFFF] border border-[#2E96F5]'
                           : 'text-[#FFFFFF]/70 hover:text-[#FFFFFF]'
+=======
+                          ? "bg-sky-500/30 text-white border border-sky-400/60"
+                          : "text-slate-400 hover:text-white"
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
                       }`}
                     >
-                      B{band.bandNumber} ({band.minUm.toFixed(1)}–{band.maxUm.toFixed(1)}μm)
+                      B{band.bandNumber} ({band.minUm.toFixed(1)}–
+                      {band.maxUm.toFixed(1)}μm)
                     </button>
                   ))}
                 </div>
               ) : (
                 <div className="flex flex-wrap items-center gap-3 text-xs">
+<<<<<<< HEAD
                   <label htmlFor="epochSlider" className="font-mono text-[#FFFFFF]/85">
                     SURVEY EPOCH:{' '}
                     <span className="text-[#EAFE07] font-semibold tabular-nums">
+=======
+                  <label
+                    htmlFor="epochSlider"
+                    className="font-mono text-slate-300"
+                  >
+                    SURVEY EPOCH:{" "}
+                    <span className="text-sky-300 font-semibold tabular-nums">
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
                       {orbitEpochYr.toFixed(1)}
                     </span>
                   </label>
@@ -238,6 +312,7 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                   </button>
                 </div>
               )}
+<<<<<<< HEAD
 
               <div className="flex items-center gap-2 text-xs">
                 <button
@@ -265,6 +340,8 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                   <span>Galactic Plane</span>
                 </button>
               </div>
+=======
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
             </div>
 
             {/* Interactive SVG Viewport */}
@@ -299,7 +376,8 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
 
                   {/* Latitude Parallels */}
                   {[-150, -75, 0, 75, 150].map((dy) => {
-                    const halfWidth = Math.sqrt(Math.max(0, 1 - Math.pow(dy / 230, 2))) * 465;
+                    const halfWidth =
+                      Math.sqrt(Math.max(0, 1 - Math.pow(dy / 230, 2))) * 465;
                     return (
                       <line
                         key={dy}
@@ -307,9 +385,15 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                         y1={260 + dy}
                         x2={500 + halfWidth}
                         y2={260 + dy}
+<<<<<<< HEAD
                         stroke="#2E96F5"
                         strokeOpacity={dy === 0 ? '0.45' : '0.2'}
                         strokeDasharray={dy === 0 ? undefined : '4 5'}
+=======
+                        stroke="#60a5fa"
+                        strokeOpacity={dy === 0 ? "0.35" : "0.16"}
+                        strokeDasharray={dy === 0 ? undefined : "4 5"}
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
                       />
                     );
                   })}
@@ -320,13 +404,20 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                       key={dx}
                       d={`M 500 30 Q ${500 + dx * 1.32} 260 500 490`}
                       fill="none"
+<<<<<<< HEAD
                       stroke="#2E96F5"
                       strokeOpacity={dx === 0 ? '0.45' : '0.2'}
                       strokeDasharray={dx === 0 ? undefined : '4 5'}
+=======
+                      stroke="#60a5fa"
+                      strokeOpacity={dx === 0 ? "0.35" : "0.16"}
+                      strokeDasharray={dx === 0 ? undefined : "4 5"}
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
                     />
                   ))}
 
                   {/* Galactic Plane Dust Band */}
+<<<<<<< HEAD
                   {showGalacticPlane && (
                     <path
                       d="M 55 280 C 260 110, 680 410, 945 245"
@@ -363,11 +454,53 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                       </text>
                     </g>
                   )}
+=======
+                  <path
+                    d="M 55 280 C 260 110, 680 410, 945 245"
+                    fill="none"
+                    stroke="#38bdf8"
+                    strokeOpacity="0.18"
+                    strokeWidth="36"
+                    strokeLinecap="round"
+                  />
+
+                  {/* Ecliptic Plane Sinusoid & Deep Pole Rings */}
+                  <g>
+                    <path
+                      d="M 42 260 C 265 375, 735 145, 958 260"
+                      fill="none"
+                      stroke="#f59e0b"
+                      strokeOpacity="0.6"
+                      strokeWidth="1.6"
+                      strokeDasharray="7 5"
+                    />
+                    <circle
+                      cx="812"
+                      cy="118"
+                      r="26"
+                      fill="none"
+                      stroke="#38bdf8"
+                      strokeOpacity="0.45"
+                      strokeDasharray="3 3"
+                    />
+                    <text
+                      x="812"
+                      y="84"
+                      textAnchor="middle"
+                      fill="#7dd3fc"
+                      fontSize="10"
+                      fontFamily="monospace"
+                    >
+                      NEP DEEP FIELD
+                    </text>
+                  </g>
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
 
                   {/* Plotted Celestial Objects */}
                   {visibleObjects.map((obj) => {
                     const isSelected = obj.id === selectedObject.id;
                     const accent =
+<<<<<<< HEAD
                       obj.category === 'Trans-Neptunian'
                         ? '#EAFE07'
                         : obj.category === 'Galaxy'
@@ -375,6 +508,15 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                           : obj.category === 'Molecular Cloud'
                             ? '#E43700'
                             : '#FFFFFF';
+=======
+                      obj.category === "Trans-Neptunian"
+                        ? "#f59e0b"
+                        : obj.category === "Galaxy"
+                          ? "#60a5fa"
+                          : obj.category === "Molecular Cloud"
+                            ? "#34d399"
+                            : "#c084fc";
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
                     return (
                       <g
                         key={obj.id}
@@ -421,12 +563,16 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                         <text
                           x={obj.skyX + 12}
                           y={obj.skyY + 4}
+<<<<<<< HEAD
                           fill="#FFFFFF"
                           opacity={isSelected ? '1' : '0.85'}
+=======
+                          fill={isSelected ? "#ffffff" : "#cbd5e1"}
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
                           fontSize="12"
-                          fontWeight={isSelected ? '600' : '400'}
+                          fontWeight={isSelected ? "600" : "400"}
                         >
-                          {obj.name.split(' (')[0]}
+                          {obj.name.split(" (")[0]}
                         </text>
                       </g>
                     );
@@ -475,8 +621,19 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                     strokeOpacity="0.4"
                     strokeWidth="12"
                   />
+<<<<<<< HEAD
                   <circle cx="530" cy="265" r="5" fill="#EAFE07" />
                   <text x="542" y="269" fill="#EAFE07" fontSize="11" fontFamily="monospace">
+=======
+                  <circle cx="530" cy="265" r="5" fill="#fde047" />
+                  <text
+                    x="542"
+                    y="269"
+                    fill="#fef08a"
+                    fontSize="11"
+                    fontFamily="monospace"
+                  >
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
                     SOL + KUIPER BELT (30–50 AU)
                   </text>
 
@@ -530,10 +687,12 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
 
                   {/* Scrubbable Planet X & Sedna Positions */}
                   {(() => {
-                    const phaseRad = ((212 + (orbitEpochYr - 2025) * 1.8) * Math.PI) / 180;
+                    const phaseRad =
+                      ((212 + (orbitEpochYr - 2025) * 1.8) * Math.PI) / 180;
                     const px = 390 + 245 * Math.cos(phaseRad);
                     const py = 260 + 168 * Math.sin(phaseRad);
-                    const sednaPhase = ((-145 + (orbitEpochYr - 2025) * 2.4) * Math.PI) / 180;
+                    const sednaPhase =
+                      ((-145 + (orbitEpochYr - 2025) * 2.4) * Math.PI) / 180;
                     const sx = 655 + 175 * Math.cos(sednaPhase);
                     const sy = 285 + 78 * Math.sin(sednaPhase);
 
@@ -552,7 +711,7 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
 
                         {/* Planet X Marker */}
                         <g
-                          onClick={() => onSelectObjectId('planet-x-candidate')}
+                          onClick={() => onSelectObjectId("planet-x-candidate")}
                           className="cursor-pointer"
                         >
                           <circle
@@ -564,22 +723,66 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                             stroke="#EAFE07"
                             strokeWidth="1.4"
                           />
+<<<<<<< HEAD
                           <circle cx={px} cy={py} r="7" fill="#EAFE07" stroke="#FFFFFF" strokeWidth="1.5" />
                           <text x={px + 14} y={py - 6} fill="#FFFFFF" fontSize="12" fontWeight="600">
                             Planet X Candidate
                           </text>
                           <text x={px + 14} y={py + 10} fill="#FFFFFF" fillOpacity="0.7" fontSize="10" fontFamily="monospace">
+=======
+                          <circle
+                            cx={px}
+                            cy={py}
+                            r="7"
+                            fill="#fbbf24"
+                            stroke="#ffffff"
+                            strokeWidth="1.5"
+                          />
+                          <text
+                            x={px + 14}
+                            y={py - 6}
+                            fill="#fef3c7"
+                            fontSize="12"
+                            fontWeight="600"
+                          >
+                            Planet X Candidate
+                          </text>
+                          <text
+                            x={px + 14}
+                            y={py + 10}
+                            fill="#94a3b8"
+                            fontSize="10"
+                            fontFamily="monospace"
+                          >
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
                             a ≈ 460 AU · m_AB 21.4
                           </text>
                         </g>
 
                         {/* Sedna Marker */}
                         <g
-                          onClick={() => onSelectObjectId('sedna-90377')}
+                          onClick={() => onSelectObjectId("sedna-90377")}
                           className="cursor-pointer"
                         >
+<<<<<<< HEAD
                           <circle cx={sx} cy={sy} r="6" fill="#2E96F5" stroke="#FFFFFF" strokeWidth="1.4" />
                           <text x={sx + 11} y={sy + 4} fill="#FFFFFF" fontSize="11">
+=======
+                          <circle
+                            cx={sx}
+                            cy={sy}
+                            r="6"
+                            fill="#34d399"
+                            stroke="#ffffff"
+                            strokeWidth="1.4"
+                          />
+                          <text
+                            x={sx + 11}
+                            y={sy + 4}
+                            fill="#d1fae5"
+                            fontSize="11"
+                          >
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
                             90377 Sedna (83.7 AU)
                           </text>
                         </g>
@@ -618,9 +821,19 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
 
               {/* Title & Coordinates */}
               <div>
+<<<<<<< HEAD
                 <div className="text-xs font-mono text-[#2E96F5]">{selectedObject.designation}</div>
                 <h2 className="mt-1 text-xl font-bold text-[#FFFFFF]">{selectedObject.name}</h2>
                 <div className="mt-1.5 flex items-center gap-2 text-xs font-mono tabular-nums text-[#FFFFFF]/70">
+=======
+                <div className="text-xs font-mono text-sky-300">
+                  {selectedObject.designation}
+                </div>
+                <h2 className="mt-1 text-xl font-bold text-white">
+                  {selectedObject.name}
+                </h2>
+                <div className="mt-1.5 flex items-center gap-2 text-xs font-mono tabular-nums text-slate-400">
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
                   <span>RA {selectedObject.ra}</span>
                   <span aria-hidden="true">·</span>
                   <span>DEC {selectedObject.dec}</span>
@@ -641,9 +854,15 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                   <div className="text-[11px] font-mono uppercase tracking-wider text-[#FFFFFF]/65">
                     Peak IR Band
                   </div>
+<<<<<<< HEAD
                   <div className="text-base font-mono font-semibold tabular-nums text-[#2E96F5]">
                     {selectedObject.peakBandMicrons.toFixed(2)}{' '}
                     <span className="text-xs text-[#FFFFFF]/65">μm</span>
+=======
+                  <div className="text-base font-mono font-semibold tabular-nums text-sky-300">
+                    {selectedObject.peakBandMicrons.toFixed(2)}{" "}
+                    <span className="text-xs text-slate-400">μm</span>
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
                   </div>
                 </div>
                 <div>
@@ -658,18 +877,36 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                   <div className="text-[11px] font-mono uppercase tracking-wider text-[#FFFFFF]/65">
                     Effective Temp
                   </div>
+<<<<<<< HEAD
                   <div className="text-sm font-mono font-medium tabular-nums text-[#FFFFFF]/90">
                     {selectedObject.temperatureK}{' '}
                     <span className="text-xs text-[#FFFFFF]/65">K</span>
+=======
+                  <div className="text-sm font-mono font-medium tabular-nums text-slate-200">
+                    {selectedObject.temperatureK}{" "}
+                    <span className="text-xs text-slate-400">K</span>
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
                   </div>
                 </div>
               </div>
 
+<<<<<<< HEAD
               <p className="text-sm text-[#FFFFFF]/80 leading-relaxed">{selectedObject.summary}</p>
 
               <div className="pt-2 border-t border-[#2E96F5]/20">
                 <div className="text-xs font-semibold text-[#2E96F5]">SPHEREx Observation Role</div>
                 <p className="mt-1 text-xs text-[#FFFFFF]/80 leading-relaxed">
+=======
+              <p className="text-sm text-slate-300 leading-relaxed">
+                {selectedObject.summary}
+              </p>
+
+              <div className="pt-2 border-t border-blue-400/15">
+                <div className="text-xs font-semibold text-sky-300">
+                  SPHEREx Observation Role
+                </div>
+                <p className="mt-1 text-xs text-slate-300 leading-relaxed">
+>>>>>>> b4986efe9708d599d813c71faffca8146902aef0
                   {selectedObject.spherexInsight}
                 </p>
               </div>

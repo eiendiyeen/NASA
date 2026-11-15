@@ -22,7 +22,7 @@ export const VERIFIED_NASA_ASSETS = {
   hubbleSpiral: 'https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000158/GSFC_20171208_Archive_e000158~large.jpg',
   neptuneRings: 'https://images-assets.nasa.gov/image/PIA01493/PIA01493~orig.jpg',
   neptuneDisk: 'https://images-assets.nasa.gov/image/PIA02210/PIA02210~orig.jpg',
-  earthLimbBlue: 'https://images-assets.nasa.gov/image/iss060e002090/iss060e002090~large.jpg',
+  earthLimbBlue: 'https://images-assets.nasa.gov/image/art001e000095 FD1 Earth1/art001e000095 FD1 Earth1~orig.jpg',
 };
 
 export const CELESTIAL_OBJECTS: CelestialObject[] = [
