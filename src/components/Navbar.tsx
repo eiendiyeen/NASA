@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Search, X, ArrowUpRight } from 'lucide-react';
 import { ExploreMode, ScreenTab, SearchResultItem } from '../types/space';
 import { getGlobalSearchIndex } from '../data/nasaData';
-// import { NasaMeatballLogo } from './NasaInsignia';
+import { NasaMeatballLogo } from './NasaInsignia';
 
 interface NavbarProps {
   activeTab: ScreenTab;
@@ -26,6 +26,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const [query, setQuery] = useState('');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [logoError, setLogoError] = useState(false);
   const searchContainerRef = useRef<HTMLDivElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -118,18 +119,21 @@ export const Navbar: React.FC<NavbarProps> = ({
           onClick={() => onSelectTab(ScreenTab.Home)}
           className="group flex items-center gap-3.5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2E96F5] rounded-lg shrink-0 cursor-pointer"
         >
-          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#022e7a] p-1 overflow-hidden flex items-center justify-center transition-transform duration-200 group-hover:scale-105">
-            <img
-              src="/assets/logo/logo.png"
-              alt="NASA Space Apps Challenge"
-              className="w-full h-full object-contain rounded-full"
-            />
-          </div>
-          <span aria-hidden="true" className="h-9 w-px bg-blue-300/25" />
-          <span className="font-sans text-base sm:text-lg font-semibold leading-snug tracking-tight text-white">
-            Planet X
-            <br />
-            and SPHEREx
+          {!logoError ? (
+            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#0042A6] p-1 overflow-hidden flex items-center justify-center border border-[#2E96F5]/40 transition-transform duration-200 group-hover:scale-105">
+              <img
+                src="/assets/logo/logo.png"
+                alt="NASA Space Apps Challenge"
+                onError={() => setLogoError(true)}
+                className="w-full h-full object-contain rounded-full"
+              />
+            </div>
+          ) : (
+            <NasaMeatballLogo className="w-12 h-12 sm:w-14 sm:h-14 transition-transform duration-200 group-hover:scale-105" />
+          )}
+          <span aria-hidden="true" className="h-9 w-px bg-[#FFFFFF]/25" />
+          <span className="font-display text-xl sm:text-2xl lg:text-[26px] font-black leading-none tracking-wide text-[#FFFFFF]">
+            Astronova
           </span>
         </button>
 
