@@ -1,6 +1,5 @@
 {
   "name": "Planet X and SPHEREx",
   "description": "Explore the mysteries of the universe through NASA's SPHEREx near-infrared space observatory and outer solar system Planet X sky surveys.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "requestFramePermissions": []
 }
