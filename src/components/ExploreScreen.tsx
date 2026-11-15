@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { Crosshair, LineChart, RotateCcw } from "lucide-react";
+import { Crosshair, Eye, Layers, LineChart, RotateCcw } from "lucide-react";
 import { CelestialObject, ExploreMode } from "../types/space";
 import {
   CELESTIAL_OBJECTS,
@@ -26,6 +26,8 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
   onOpenGalleryItem,
 }) => {
   const [activeBand, setActiveBand] = useState<number>(0); // 0 = All Bands, 1..6 = LVF Band
+  const [showEcliptic, setShowEcliptic] = useState(true);
+  const [showGalacticPlane, setShowGalacticPlane] = useState(true);
   const [cursorCoords, setCursorCoords] = useState<{ ra: string; dec: string }>(
     {
       ra: "12h 00m",
@@ -259,6 +261,35 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                   </button>
                 </div>
               )}
+
+              {mode === ExploreMode.SkySurvey && (
+                <div className="flex items-center gap-2 text-xs">
+                  <button
+                    type="button"
+                    onClick={() => setShowEcliptic((v) => !v)}
+                    className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded border whitespace-nowrap shrink-0 cursor-pointer ${
+                      showEcliptic
+                        ? "border-[#2E96F5] bg-[#0960E1]/40 text-[#FFFFFF]"
+                        : "border-[#2E96F5]/25 text-[#FFFFFF]/60"
+                    }`}
+                  >
+                    <Layers className="w-3.5 h-3.5" />
+                    <span>Ecliptic</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setShowGalacticPlane((v) => !v)}
+                    className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded border whitespace-nowrap shrink-0 cursor-pointer ${
+                      showGalacticPlane
+                        ? "border-[#2E96F5] bg-[#0960E1]/40 text-[#FFFFFF]"
+                        : "border-[#2E96F5]/25 text-[#FFFFFF]/60"
+                    }`}
+                  >
+                    <Eye className="w-3.5 h-3.5" />
+                    <span>Galactic Plane</span>
+                  </button>
+                </div>
+              )}
             </div>
 
             {/* Interactive SVG Viewport */}
@@ -322,45 +353,49 @@ export const ExploreScreen: React.FC<ExploreScreenProps> = ({
                   ))}
 
                   {/* Galactic Plane Dust Band */}
-                  <path
-                    d="M 55 280 C 260 110, 680 410, 945 245"
-                    fill="none"
-                    stroke="#38bdf8"
-                    strokeOpacity="0.18"
-                    strokeWidth="36"
-                    strokeLinecap="round"
-                  />
-
-                  {/* Ecliptic Plane Sinusoid & Deep Pole Rings */}
-                  <g>
+                  {showGalacticPlane && (
                     <path
-                      d="M 42 260 C 265 375, 735 145, 958 260"
-                      fill="none"
-                      stroke="#f59e0b"
-                      strokeOpacity="0.6"
-                      strokeWidth="1.6"
-                      strokeDasharray="7 5"
-                    />
-                    <circle
-                      cx="812"
-                      cy="118"
-                      r="26"
+                      d="M 55 280 C 260 110, 680 410, 945 245"
                       fill="none"
                       stroke="#38bdf8"
-                      strokeOpacity="0.45"
-                      strokeDasharray="3 3"
+                      strokeOpacity="0.18"
+                      strokeWidth="36"
+                      strokeLinecap="round"
                     />
-                    <text
-                      x="812"
-                      y="84"
-                      textAnchor="middle"
-                      fill="#7dd3fc"
-                      fontSize="10"
-                      fontFamily="monospace"
-                    >
-                      NEP DEEP FIELD
-                    </text>
-                  </g>
+                  )}
+
+                  {/* Ecliptic Plane Sinusoid & Deep Pole Rings */}
+                  {showEcliptic && (
+                    <g>
+                      <path
+                        d="M 42 260 C 265 375, 735 145, 958 260"
+                        fill="none"
+                        stroke="#f59e0b"
+                        strokeOpacity="0.6"
+                        strokeWidth="1.6"
+                        strokeDasharray="7 5"
+                      />
+                      <circle
+                        cx="812"
+                        cy="118"
+                        r="26"
+                        fill="none"
+                        stroke="#38bdf8"
+                        strokeOpacity="0.45"
+                        strokeDasharray="3 3"
+                      />
+                      <text
+                        x="812"
+                        y="84"
+                        textAnchor="middle"
+                        fill="#7dd3fc"
+                        fontSize="10"
+                        fontFamily="monospace"
+                      >
+                        NEP DEEP FIELD
+                      </text>
+                    </g>
+                  )}
 
                   {/* Plotted Celestial Objects */}
                   {visibleObjects.map((obj) => {
