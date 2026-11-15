@@ -44,13 +44,11 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         <div className="absolute inset-y-0 left-0 w-full lg:w-[62%] bg-gradient-to-r from-[#030716]/92 via-[#04091a]/70 to-transparent" />
       </div>
 
-      {/* Main Hero Copy */}
-      <div className="relative z-20 flex items-center my-auto py-4 lg:py-6">
-        <div className="max-w-xl">
-          <h1 className="font-display italic font-extrabold text-4xl sm:text-6xl lg:text-[66px] leading-[1.05] tracking-tight text-white drop-shadow-[0_4px_24px_rgba(3,7,18,0.9)]">
-            Planet X and
-            <br />
-            SPHEREx
+      <div className="relative z-20 grid grid-cols-1 lg:grid-cols-12 items-center gap-8 my-auto py-4 lg:py-6">
+        {/* Left Hero Column */}
+        <div className="lg:col-span-7">
+          <h1 className="font-display italic font-black text-[26px] sm:text-5xl lg:text-[52px] xl:text-[62px] leading-[1.05] tracking-tight text-[#FFFFFF] whitespace-nowrap drop-shadow-[0_4px_24px_rgba(7,23,63,0.75)]">
+            Beyond our Universe
           </h1>
 
           <p className="mt-5 text-base sm:text-lg lg:text-[19px] leading-relaxed text-[#FFFFFF]/90 max-w-lg drop-shadow-[0_2px_12px_rgba(7,23,63,0.75)]">
@@ -73,7 +71,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
               className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-[#FFFFFF]/90 hover:text-[#FFFFFF] transition-colors whitespace-nowrap shrink-0 cursor-pointer"
             >
               <Compass className="w-4 h-4 text-[#2E96F5]" />
-              <span>Mission Architecture</span>
+              <span>Discover Architecture</span>
             </button>
           </div>
         </div>

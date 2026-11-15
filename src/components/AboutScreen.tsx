@@ -30,7 +30,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch border-b border-[#2E96F5]/25 pb-7">
         <div className="lg:col-span-7 flex flex-col justify-between gap-5">
           <div>
-            <div className="text-xs font-mono text-[#2E96F5]">
+            <div className="text-xs font-mono text-[#eafe07]">
               NASA Medium-Class Explorer (MIDEX) · JPL-Caltech
             </div>
             <h1 className="mt-1.5 font-display text-2xl sm:text-4xl font-black text-[#FFFFFF] leading-tight">
@@ -55,7 +55,7 @@ export const AboutScreen: React.FC<AboutScreenProps> = ({
               <div className="text-xs text-[#FFFFFF]/70 mt-0.5">Near-IR Color Channels</div>
             </div>
             <div>
-              <div className="text-2xl font-mono font-bold tabular-nums text-[#2E96F5]">4×</div>
+              <div className="text-2xl font-mono font-bold tabular-nums text-[#EAFE07]">4×</div>
               <div className="text-xs text-[#FFFFFF]/70 mt-0.5">Complete All-Sky Maps</div>
             </div>
             <div>

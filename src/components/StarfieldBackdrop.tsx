@@ -1,83 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 
 export const StarfieldBackdrop: React.FC = () => {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let animationId = 0;
-
-    interface Star {
-      x: number;
-      y: number;
-      r: number;
-      alpha: number;
-      speed: number;
-      hue: string;
-    }
-
-    let stars: Star[] = [];
-
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      const count = Math.min(220, Math.floor((canvas.width * canvas.height) / 6800));
-      stars = Array.from({ length: count }, () => {
-        const tintRoll = Math.random();
-        // Strictly White (#FFFFFF) and Blue Yonder (#2E96F5)
-        const hue = tintRoll > 0.72 ? '46, 150, 245' : '255, 255, 255';
-        return {
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          r: Math.random() * 1.35 + 0.3,
-          alpha: Math.random() * 0.75 + 0.2,
-          speed: Math.random() * 0.015 + 0.004,
-          hue,
-        };
-      });
-    };
-
-    resize();
-    window.addEventListener('resize', resize);
-
-    let tick = 0;
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      tick += 1;
-
-      for (const s of stars) {
-        const twinkle = prefersReducedMotion
-          ? s.alpha
-          : s.alpha * (0.68 + 0.32 * Math.sin(tick * s.speed + s.x));
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${s.hue}, ${twinkle.toFixed(3)})`;
-        ctx.fill();
-      }
-
-      if (!prefersReducedMotion) {
-        animationId = window.requestAnimationFrame(draw);
-      }
-    };
-
-    draw();
-
-    return () => {
-      window.removeEventListener('resize', resize);
-      if (animationId) window.cancelAnimationFrame(animationId);
-    };
-  }, []);
-
   return (
-    <canvas
-      ref={canvasRef}
+    <img
+      src="/assets/images/orbit.jpeg"
+      alt=""
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-0 opacity-85"
+      className="pointer-events-none fixed inset-0 z-0 h-full w-full object-cover object-center scale-[1.04] invert contrast-150 brightness-95 mix-blend-screen opacity-35 select-none"
     />
   );
 };
